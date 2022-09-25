@@ -21,11 +21,11 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
 
-// app.use("/", indexRouter);
+app.use("/", indexRouter);
 app.use("/users", usersRouter);
-app.get("/api", (req, res) => {
-  res.json({ users: ["user1", "user2", "user3", "user4"] });
-});
+// app.get("/api", (req, res) => {
+//   res.json({ users: ["user1", "user2", "user3", "user4"] });
+// });
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
