@@ -23,8 +23,15 @@ app.use(express.static(path.join(__dirname, "public")));
 
 // app.use("/", indexRouter);
 app.use("/users", usersRouter);
-app.get("/", (req, res) => {
+// app.get("*", (req, res) => {
+//   res.sendFile(path.resolve(__dirname, "./client/build", "index.html"));
+// });
+app.get("/api", (req, res) => {
   res.json({ users: ["user1", "user2", "user3", "user4"] });
+});
+app.use(express.static(path.resolve(__dirname, "./client/build")));
+app.get("*", (req, res) => {
+  res.sendFile(path.resolve(__dirname, "./client/build", "index.html"));
 });
 
 // catch 404 and forward to error handler
