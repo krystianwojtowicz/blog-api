@@ -14,8 +14,9 @@ var app = express();
 
 // Set up mongoose
 const mongoose = require("mongoose");
-// const mongoDB = process.env.MONGO_URL;
-const mongoDB = process.env.MONGO;
+const mongoDB =
+  "mongodb+srv://m0001-student:Komputer8@cluster0.sskqvig.mongodb.net/?retryWrites=true&w=majority";
+// const mongoDB = process.env.MONGO;
 mongoose.connect(mongoDB, { useNewUrlParser: true, useUnifiedTopology: true });
 const db = mongoose.connection;
 db.on("error", console.error.bind(console, "MongoDB connection error"));
