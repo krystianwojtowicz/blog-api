@@ -1,5 +1,7 @@
 var createError = require("http-errors");
-// const User = require("./models/user");
+require("dotenv").config();
+const cors = require("cors");
+const User = require("./models/user");
 var express = require("express");
 var path = require("path");
 var cookieParser = require("cookie-parser");
@@ -13,8 +15,7 @@ var app = express();
 // Set up mongoose
 const mongoose = require("mongoose");
 // const mongoDB = process.env.MONGO_URL;
-const mongoDB =
-  "mongodb+srv://m0001-student:Komputer8@cluster0.sskqvig.mongodb.net/?retryWrites=true&w=majority";
+const mongoDB = process.env.MONGO;
 mongoose.connect(mongoDB, { useNewUrlParser: true, useUnifiedTopology: true });
 const db = mongoose.connection;
 db.on("error", console.error.bind(console, "MongoDB connection error"));
@@ -30,6 +31,7 @@ app.set("view engine", "jade");
 
 app.use(logger("dev"));
 app.use(express.json());
+app.use(cors());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 // app.use(express.static(path.join(__dirname, "public")));
@@ -48,6 +50,10 @@ app.use("/users", usersRouter);
 app.use(express.static(path.resolve(__dirname, "./client/build")));
 app.get("*", (req, res) => {
   res.sendFile(path.resolve(__dirname, "./client/build", "index.html"));
+});
+app.post("/signup", (req, res) => {
+  let user = new User(req.body);
+  user.save();
 });
 
 // catch 404 and forward to error handler
