@@ -56,6 +56,13 @@ app.post("/signup", (req, res) => {
   user.save();
 });
 
+// for change code
+// app.post("/signup", (req, res) => {
+//   let user = new User(req.body);
+//   user.save();
+// });
+// for change code
+
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
   next(createError(404));
