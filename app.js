@@ -14,8 +14,9 @@ var app = express();
 
 // Set up mongoose
 const mongoose = require("mongoose");
-// const mongoDB = process.env.MONGO_URL;
-const mongoDB = process.env.MONGO;
+const mongoDB =
+  "mongodb+srv://m0001-student:Komputer8@cluster0.sskqvig.mongodb.net/?retryWrites=true&w=majority";
+// const mongoDB = process.env.MONGO;
 mongoose.connect(mongoDB, { useNewUrlParser: true, useUnifiedTopology: true });
 const db = mongoose.connection;
 db.on("error", console.error.bind(console, "MongoDB connection error"));
@@ -51,7 +52,10 @@ app.use(express.static(path.resolve(__dirname, "./client/build")));
 app.get("*", (req, res) => {
   res.sendFile(path.resolve(__dirname, "./client/build", "index.html"));
 });
-app.post("/signup", (req, res) => {
+app.post("/signup", (err, req, res) => {
+  if (err) {
+    next(err); // Pass errors to Express.
+  }
   let user = new User(req.body);
   user.save();
 });
