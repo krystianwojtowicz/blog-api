@@ -52,7 +52,10 @@ app.use(express.static(path.resolve(__dirname, "./client/build")));
 app.get("*", (req, res) => {
   res.sendFile(path.resolve(__dirname, "./client/build", "index.html"));
 });
-app.post("/signup", (req, res, next) => {
+app.post("/signup", (err, req, res, next) => {
+  if (err) {
+    next(err); // Pass errors to Express.
+  }
   let user = new User(req.body);
   user.save();
 });
