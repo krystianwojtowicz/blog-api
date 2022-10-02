@@ -6,7 +6,7 @@ const SigUp = () => {
   const [confirmPassword, setConfirmPassword] = useState("");
   const collectData = async () => {
     console.log(username, password, confirmPassword);
-    let result = await fetch("http://localhost:5000/signup", {
+    let result = await fetch("https://blog-api-krystian.herokuapp.com/signup", {
       method: "post",
       body: JSON.stringify({ username, password }),
       headers: { "Content-Type": "application/json" },
@@ -16,7 +16,7 @@ const SigUp = () => {
   };
   return (
     <div className="register">
-      <h1>Registerrr</h1>
+      <h1>Register</h1>
       <input
         className="inputBox"
         type="text"
