@@ -9,7 +9,7 @@ const SigUp = () => {
   };
   return (
     <div className="register">
-      <h1>Register</h1>
+      <h1>Registerr</h1>
       <input
         className="inputBox"
         type="text"
