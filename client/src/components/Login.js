@@ -28,7 +28,7 @@ const Login = () => {
   };
   return (
     <div className="login">
-      <h1>Login</h1>
+      <h1>Loginn</h1>
       <input
         className="inputBox"
         type="text"
