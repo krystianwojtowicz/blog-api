@@ -1,10 +1,9 @@
-import { useNavigate } from "react-router-dom";
 import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
-const SigUp = () => {
+const Login = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
   const navigate = useNavigate();
   useEffect(() => {
     const auth = localStorage.getItem("user");
@@ -12,20 +11,24 @@ const SigUp = () => {
       navigate("/");
     }
   }, []);
-  const collectData = async () => {
-    console.log(username, password, confirmPassword);
-    let result = await fetch("http://localhost:5000/signup", {
+  const handleLogin = async () => {
+    let result = await fetch("http://localhost:5000/login", {
       method: "post",
       body: JSON.stringify({ username, password }),
       headers: { "Content-Type": "application/json" },
     });
     result = await result.json();
     console.warn(result);
-    localStorage.setItem("user", JSON.stringify(result));
+    if (result.username) {
+      localStorage.setItem("user", JSON.stringify(result));
+      navigate("/");
+    } else {
+      alert("Please enter correct details");
+    }
   };
   return (
-    <div className="register">
-      <h1>Register</h1>
+    <div className="login">
+      <h1>Login</h1>
       <input
         className="inputBox"
         type="text"
@@ -40,17 +43,10 @@ const SigUp = () => {
         value={password}
         onChange={(e) => setPassword(e.target.value)}
       />
-      <input
-        className="inputBox"
-        type="password"
-        placeholder="confirm password"
-        value={confirmPassword}
-        onChange={(e) => setConfirmPassword(e.target.value)}
-      />
-      <button onClick={collectData} className="appButton" type="button">
-        Sign Up
+      <button className="appButton" type="button" onClick={handleLogin}>
+        Login
       </button>
     </div>
   );
 };
-export default SigUp;
+export default Login;
