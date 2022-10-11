@@ -4,7 +4,7 @@ import React, { useState, useEffect } from "react";
 const SigUp = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
+  // const [confirmPassword, setConfirmPassword] = useState("");
   const navigate = useNavigate();
   useEffect(() => {
     const auth = localStorage.getItem("user");
@@ -13,7 +13,11 @@ const SigUp = () => {
     }
   }, []);
   const collectData = async () => {
-    console.log(username, password, confirmPassword);
+    console.log(
+      username,
+      password
+      //  confirmPassword
+    );
     let result = await fetch("http://localhost:5000/signup", {
       method: "post",
       body: JSON.stringify({ username, password }),
@@ -21,7 +25,7 @@ const SigUp = () => {
     });
     result = await result.json();
     console.warn(result);
-    localStorage.setItem("user", JSON.stringify(result));
+    // localStorage.setItem("user", JSON.stringify(result));
   };
   return (
     <div className="register">
@@ -40,13 +44,13 @@ const SigUp = () => {
         value={password}
         onChange={(e) => setPassword(e.target.value)}
       />
-      <input
+      {/* <input
         className="inputBox"
         type="password"
         placeholder="confirm password"
         value={confirmPassword}
         onChange={(e) => setConfirmPassword(e.target.value)}
-      />
+      /> */}
       <button onClick={collectData} className="appButton" type="button">
         Sign Up
       </button>
