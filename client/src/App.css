@@ -40,10 +40,16 @@
   text-align: center;
   margin-top: 50px;
 }
-.post-list ul {
-  list-style-type: none;
+.wrapper-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, 20rem);
+  grid-template-rows: 200px;
+  grid-auto-rows: 200px;
+  grid-auto-columns: repeat(auto-fit, 20rem);
+  justify-content: center;
 }
-.post-list ul li {
+.wrapper-grid div {
   border: 1px solid black;
-  width: 600px;
+  border-radius: 4px;
+  margin: 0.5rem;
 }

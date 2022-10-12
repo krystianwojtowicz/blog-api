@@ -62,12 +62,12 @@ app.get("*", (req, res) => {
 app.post("/signup", async (req, res, next) => {
   try {
     // check if username exists
-    // const userExists = await User.find({ username: req.body.username });
-    // if (userExists.length > 0) {
-    //   return res.status(409).json({
-    //     error: "Username already exists",
-    //   });
-    // }
+    const userExists = await User.find({ username: req.body.username });
+    if (userExists.length > 0) {
+      return res.json({
+        error: "Username already exists",
+      });
+    }
     // creating user
     let user = new User(req.body);
     const saveUser = await user.save();
@@ -86,6 +86,34 @@ app.post("/signup", async (req, res, next) => {
     });
   }
 });
+
+// app.post("/signup", async (req, res, next) => {
+//   try {
+//     // check if username exists
+//     const userExists = await User.find({ username: req.body.username });
+//     if (userExists.length > 0) {
+//       return res.status(409).json({
+//         error: "Username already exists",
+//       });
+//     }
+//     // creating user
+//     let user = new User(req.body);
+//     const saveUser = await user.save();
+//     if (saveUser) {
+//       return res.status(201).json({
+//         message: "User created",
+//         user,
+//       });
+//     }
+//     return res.status(500).json({
+//       error: "Error. Try again later",
+//     });
+//   } catch (err) {
+//     return res.status(500).json({
+//       error: err.message,
+//     });
+//   }
+// });
 
 app.post("/login", async (req, res) => {
   if (req.body.password) {
