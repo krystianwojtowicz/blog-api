@@ -6,7 +6,7 @@ const Posts = () => {
     getPosts();
   }, []);
   const getPosts = async () => {
-    let result = await fetch("http://localhost:5000/posts");
+    let result = await fetch("https://blog-api-krystian.herokuapp.com/posts");
     result = await result.json();
     setPosts(result);
   };
