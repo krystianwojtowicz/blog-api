@@ -5,17 +5,14 @@ const CreatePost = () => {
   const [content, setContent] = useState("");
   const handleCreate = async () => {
     console.log(title, content);
-    let result = await fetch(
-      "https://blog-api-krystian.herokuapp.com/create-post",
-      {
-        method: "post",
-        body: JSON.stringify({ title, content }),
-        headers: {
-          "Content-Type": "application/json",
-          authorization: JSON.parse(localStorage.getItem("token")),
-        },
-      }
-    );
+    let result = await fetch("http://localhost:5000/create-post", {
+      method: "post",
+      body: JSON.stringify({ title, content }),
+      headers: {
+        "Content-Type": "application/json",
+        authorization: JSON.parse(localStorage.getItem("token")),
+      },
+    });
     result = await result.json();
     console.warn(result);
   };
@@ -31,6 +28,7 @@ const CreatePost = () => {
       />
       <textarea
         className="inputBox"
+        maxLength="100"
         type="text"
         value={content}
         onChange={(e) => setContent(e.target.value)}

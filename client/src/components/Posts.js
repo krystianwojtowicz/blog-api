@@ -6,7 +6,7 @@ const Posts = () => {
     getPosts();
   }, []);
   const getPosts = async () => {
-    let result = await fetch("https://blog-api-krystian.herokuapp.com/posts");
+    let result = await fetch("http://localhost:5000/posts");
     result = await result.json();
     setPosts(result);
   };
@@ -14,12 +14,14 @@ const Posts = () => {
   return (
     <div className="post-list">
       <h1>Posts</h1>
-      {posts.map((item, index) => (
-        <ul key={item._id}>
-          <li>{item.title}</li>
-          <li>{item.content}</li>
-        </ul>
-      ))}
+      <div className="wrapper-grid">
+        {posts.map((item, index) => (
+          <div key={item._id}>
+            <h4>{item.title}</h4>
+            <p>{item.content}</p>
+          </div>
+        ))}
+      </div>
     </div>
   );
 };
