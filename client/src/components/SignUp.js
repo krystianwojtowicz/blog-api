@@ -25,6 +25,9 @@ const SignUp = () => {
     });
     result = await result.json();
     console.warn(result);
+    if (result.error) {
+      alert(JSON.stringify(result.error));
+    }
     // localStorage.setItem("user", JSON.stringify(result));
   };
   return (

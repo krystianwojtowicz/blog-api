@@ -62,12 +62,12 @@ app.get("*", (req, res) => {
 app.post("/signup", async (req, res, next) => {
   try {
     // check if username exists
-    // const userExists = await User.find({ username: req.body.username });
-    // if (userExists.length > 0) {
-    //   return res.status(409).json({
-    //     error: "Username already exists",
-    //   });
-    // }
+    const userExists = await User.find({ username: req.body.username });
+    if (userExists.length > 0) {
+      return res.json({
+        error: "Username already exists",
+      });
+    }
     // creating user
     let user = new User(req.body);
     const saveUser = await user.save();
