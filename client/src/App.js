@@ -1,9 +1,11 @@
 // import React, { useEffect, useState } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Nav from "./components/Nav";
-import SignUp from "./components/SignUp";
+import Signup from "./components/Signup";
 import "./App.css";
 import Login from "./components/Login";
+import CreatePost from "./components/CreatePost";
+import Posts from "./components/Posts";
 
 function App() {
   // const [backendData, setBackendData] = useState({});
@@ -19,10 +21,10 @@ function App() {
       <BrowserRouter>
         <Nav></Nav>
         <Routes>
-          <Route path="/" element={<h1>Comments</h1>}></Route>
-          <Route path="/posts" element={<h1>Posts</h1>}></Route>
-          <Route path="/signup" element={<SignUp />}></Route>
+          <Route path="/posts" element={<Posts />}></Route>
+          <Route path="/signup" element={<Signup />}></Route>
           <Route path="/login" element={<Login />}></Route>
+          <Route path="/create-post" element={<CreatePost />}></Route>
         </Routes>
       </BrowserRouter>
       {/* {typeof backendData.users === "undefined" ? (

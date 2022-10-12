@@ -1,10 +1,10 @@
 import { useNavigate } from "react-router-dom";
 import React, { useState, useEffect } from "react";
 
-const SigUp = () => {
+const Signup = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
+  // const [confirmPassword, setConfirmPassword] = useState("");
   const navigate = useNavigate();
   useEffect(() => {
     const auth = localStorage.getItem("user");
@@ -13,7 +13,11 @@ const SigUp = () => {
     }
   }, []);
   const collectData = async () => {
-    console.log(username, password, confirmPassword);
+    console.log(
+      username,
+      password
+      //  confirmPassword
+    );
     let result = await fetch("https://blog-api-krystian.herokuapp.com/signup", {
       method: "post",
       body: JSON.stringify({ username, password }),
@@ -21,11 +25,11 @@ const SigUp = () => {
     });
     result = await result.json();
     console.warn(result);
-    localStorage.setItem("user", JSON.stringify(result));
+    // localStorage.setItem("user", JSON.stringify(result));
   };
   return (
     <div className="register">
-      <h1>Registerrrr</h1>
+      <h1>Register</h1>
       <input
         className="inputBox"
         type="text"
@@ -40,17 +44,17 @@ const SigUp = () => {
         value={password}
         onChange={(e) => setPassword(e.target.value)}
       />
-      <input
+      {/* <input
         className="inputBox"
         type="password"
         placeholder="confirm password"
         value={confirmPassword}
         onChange={(e) => setConfirmPassword(e.target.value)}
-      />
+      /> */}
       <button onClick={collectData} className="appButton" type="button">
         Sign Up
       </button>
     </div>
   );
 };
-export default SigUp;
+export default Signup;

@@ -35,3 +35,15 @@
 .login {
   margin-left: 30%;
 }
+
+.post-list {
+  text-align: center;
+  margin-top: 50px;
+}
+.post-list ul {
+  list-style-type: none;
+}
+.post-list ul li {
+  border: 1px solid black;
+  width: 600px;
+}
