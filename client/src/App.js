@@ -1,7 +1,7 @@
 // import React, { useEffect, useState } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Nav from "./components/Nav";
-import Signup from "./components/Signup";
+import SignUp from "./components/SignUp";
 import "./App.css";
 import Login from "./components/Login";
 import CreatePost from "./components/CreatePost";
@@ -22,7 +22,7 @@ function App() {
         <Nav></Nav>
         <Routes>
           <Route path="/posts" element={<Posts />}></Route>
-          <Route path="/signup" element={<Signup />}></Route>
+          <Route path="/signup" element={<SignUp />}></Route>
           <Route path="/login" element={<Login />}></Route>
           <Route path="/create-post" element={<CreatePost />}></Route>
         </Routes>
