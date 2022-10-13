@@ -1,13 +1,11 @@
-// const Post = require("../models/post");
+const Post = require("../models/post");
 
-// // get all posts
-// exports.posts = function (req, res) {
-//   Post.find()
-//     .sort([["timestamp", "descending"]])
-//     .populate("author")
-//     .exec((err, posts) => {
-//       if (err) return res.json(err);
+/* GET posts listing. */
+exports.posts = function (req, res, next) {
+  Post.find().exec((err, posts) => {
+    if (err) return res.json(err);
 
-//       return res.json(posts);
-//     });
-// };
+    return res.json(posts);
+  });
+};
+// iwnh
