@@ -13,7 +13,8 @@ const Nav = () => {
     <div>
       <ul className="nav-ul">
         <li>
-          <Link to="/posts">Posts</Link>
+          {/* <Link to="/posts">Posts</Link> */}
+          <Link to="/">Posts</Link>
         </li>
 
         {auth ? (

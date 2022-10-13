@@ -21,7 +21,8 @@ function App() {
       <BrowserRouter>
         <Nav></Nav>
         <Routes>
-          <Route path="/posts" element={<Posts />}></Route>
+          {/* <Route path="/posts" element={<Posts />}></Route> */}
+          <Route path="/" element={<Posts />}></Route>
           <Route path="/signup" element={<SignUp />}></Route>
           <Route path="/login" element={<Login />}></Route>
           <Route path="/create-post" element={<CreatePost />}></Route>
