@@ -17,6 +17,8 @@ const postController = require("../controllers/postController");
 
 // GET all posts
 router.get("/", postController.posts);
+// GET single post
+router.get("/:id", postController.post_detail);
 module.exports = router;
 
 // iwtotb

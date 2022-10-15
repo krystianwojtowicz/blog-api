@@ -1,4 +1,3 @@
-// import React, { useEffect, useState } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Nav from "./components/Nav";
 import SignUp from "./components/SignUp";
@@ -6,8 +5,19 @@ import "./App.css";
 import Login from "./components/Login";
 import CreatePost from "./components/CreatePost";
 import Posts from "./components/Posts";
+import PostDetails from "./components/PostDetails";
+import { useEffect, useState } from "react";
 
 function App() {
+  const [posts, setPosts] = useState([]);
+  useEffect(() => {
+    getPosts();
+  }, []);
+  const getPosts = async () => {
+    let result = await fetch("http://localhost:5000/posts");
+    result = await result.json();
+    setPosts(result);
+  };
   // const [backendData, setBackendData] = useState({});
   // useEffect(() => {
   //   fetch("/api")
@@ -22,6 +32,25 @@ function App() {
         <Nav></Nav>
         <Routes>
           {/* <Route path="/posts" element={<Posts />}></Route> */}
+          {/* {posts.map((post) => (
+            <Route
+              key={post._id}
+              path={`/${post._id}`}
+              render={() => (
+                <PostDetails {...post} posts={posts} setPosts={setPosts} />
+              )}
+            ></Route>
+          ))} */}
+          {posts.map((post) => (
+            <Route
+              key={post._id}
+              path={`/${post._id}`}
+              element={
+                <PostDetails {...post} posts={posts} setPosts={setPosts} />
+              }
+            ></Route>
+          ))}
+          {/* <Route path="/:id" element={<PostDetails />}></Route> */}
           <Route path="/" element={<Posts />}></Route>
           <Route path="/signup" element={<SignUp />}></Route>
           <Route path="/login" element={<Login />}></Route>

@@ -53,3 +53,20 @@
   border-radius: 4px;
   margin: 0.5rem;
 }
+
+.wrapper-grid div a {
+  text-decoration: none;
+  color: black;
+}
+.wrapper-grid p {
+  word-wrap: break-word;
+  padding: 0 5px;
+}
+
+textarea {
+  height: 100px;
+}
+
+.post-details {
+  text-align: center;
+}
