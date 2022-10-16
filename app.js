@@ -23,6 +23,11 @@ const mongoDB =
 mongoose.connect(mongoDB, { useNewUrlParser: true, useUnifiedTopology: true });
 const db = mongoose.connection;
 db.on("error", console.error.bind(console, "MongoDB connection error"));
+
+// // view engine setup
+// app.set("views", path.join(__dirname, "views"));
+// app.set("view engine", "pug");
+
 // const func = async () => {
 //   const data = await Post.find();
 //   console.warn(data);
@@ -145,28 +150,6 @@ app.post("/login", async (req, res) => {
 //   });
 // });
 
-app.post("/create-post", verifyToken, (req, res) => {
-  jwt.verify(req.token, "secretkey", async (err, authData) => {
-    try {
-      let post = new Post(req.body);
-      const savePost = await post.save();
-      if (savePost) {
-        return res.status(201).json({
-          message: "Post created",
-          post,
-        });
-      }
-      return res.status(500).json({
-        error: "Error. Try again later",
-      });
-    } catch (err) {
-      return res.status(500).json({
-        error: err.message,
-      });
-    }
-  });
-});
-
 // app.get("/posts", async (res, req) => {
 //   const posts = await Post.find();
 //   if (posts.length > 0) {
@@ -214,17 +197,44 @@ app.post("/create-post", verifyToken, (req, res) => {
 //   }
 // });
 
-function verifyToken(req, res, next) {
-  const bearerHeader = req.headers["authorization"];
-  if (typeof bearerHeader !== "undefined") {
-    const bearer = bearerHeader.split(" ");
-    const bearerToken = bearer[1];
-    req.token = bearerToken;
-    next();
-  } else {
-    res.sendStatus(403);
-  }
-}
+// app.post("/create-post", verifyToken, (req, res) => {
+//   jwt.verify(req.token, "secretkey", async (err, authData) => {
+//     try {
+//       let post = new Post(req.body);
+//       const savePost = await post.save();
+//       if (savePost) {
+//         return res.status(201).json({
+//           message: "Post created",
+//           post,
+//         });
+//       }
+//       return res.status(500).json({
+//         error: "Error. Try again later",
+//       });
+//     } catch (err) {
+//       return res.status(500).json({
+//         error: err.message,
+//       });
+//     }
+//   });
+// });
+
+// function verifyToken(req, res, next) {
+//   const bearerHeader = req.headers["authorization"];
+//   if (typeof bearerHeader !== "undefined") {
+//     const bearer = bearerHeader.split(" ");
+//     const bearerToken = bearer[1];
+//     req.token = bearerToken;
+//     next();
+//   } else {
+//     res.sendStatus(403);
+//   }
+// }
+
+app.use((req, res, next) => {
+  res.locals.currentUser = req.user;
+  next();
+});
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

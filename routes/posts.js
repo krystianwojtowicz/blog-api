@@ -14,11 +14,15 @@
 const express = require("express");
 const router = express.Router();
 const postController = require("../controllers/postController");
+const verifyToken = require("../config/verifyToken");
 
 // GET all posts
 router.get("/", postController.posts);
 // GET single post
 router.get("/:id", postController.post_detail);
+//  create post
+router.post("/create-post", verifyToken, postController.create_post);
+
 module.exports = router;
 
 // iwtotb
