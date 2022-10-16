@@ -9,7 +9,7 @@ const CreatePost = () => {
   const handleCreate = async () => {
     console.log(title, content);
     let result = await fetch(
-      "https://blog-api-krystian.herokuapp.com/create-post",
+      "https://blog-api-krystian.herokuapp.com/posts/create-post",
       {
         method: "post",
         body: JSON.stringify({ title, content }),
