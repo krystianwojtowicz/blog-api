@@ -20,8 +20,9 @@ const PostDetails = (props) => {
   return (
     <div className="post-details">
       {/* <h1>{JSON.stringify(params.id)}</h1> */}
-      <h1>{props.title}</h1>
-      <p>{props.content}</p>
+      <h1>title: {props.title}</h1>
+      <p>content: {props.content}</p>
+      <p>author: {props.author}</p>
     </div>
   );
 };
