@@ -11,6 +11,7 @@ const Post = (props) => {
         <h4>{props.title}</h4>
       </Link>
       <p>{props.content}</p>
+      <p>{props.author}</p>
     </div>
   );
 };

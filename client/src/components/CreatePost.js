@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 
 const CreatePost = () => {
-  const auth = JSON.parse(localStorage.getItem("user")).username;
+  const author = JSON.parse(localStorage.getItem("user")).username;
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
   // const [author, setAuthor] = useState("");
@@ -10,7 +10,7 @@ const CreatePost = () => {
     console.log(title, content);
     let result = await fetch("http://localhost:5000/posts/create-post", {
       method: "post",
-      body: JSON.stringify({ title, content }),
+      body: JSON.stringify({ title, content, author }),
       headers: {
         "Content-Type": "application/json",
         authorization: JSON.parse(localStorage.getItem("token")),
