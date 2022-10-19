@@ -13,10 +13,15 @@ function App() {
   useEffect(() => {
     getPosts();
   }, []);
+
   const getPosts = async () => {
     let result = await fetch("https://blog-api-krystian.herokuapp.com/posts");
     result = await result.json();
     setPosts(result);
+  };
+
+  const handleGetPosts = () => {
+    getPosts();
   };
   // const [backendData, setBackendData] = useState({});
   // useEffect(() => {
@@ -54,7 +59,10 @@ function App() {
           <Route path="/" element={<Posts />}></Route>
           <Route path="/signup" element={<SignUp />}></Route>
           <Route path="/login" element={<Login />}></Route>
-          <Route path="/create-post" element={<CreatePost />}></Route>
+          <Route
+            path="/create-post"
+            element={<CreatePost handleGetPosts={handleGetPosts} />}
+          ></Route>
         </Routes>
       </BrowserRouter>
       {/* {typeof backendData.users === "undefined" ? (

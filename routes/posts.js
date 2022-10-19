@@ -22,6 +22,10 @@ router.get("/", postController.posts);
 router.get("/:id", postController.post_detail);
 //  create post
 router.post("/create-post", verifyToken, postController.create_post);
+// delete post
+router.delete("/:id", postController.delete_post);
+// update post
+router.put("/:id", postController.update_post);
 
 module.exports = router;
 
