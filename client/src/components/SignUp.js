@@ -18,11 +18,14 @@ const SignUp = () => {
       password
       //  confirmPassword
     );
-    let result = await fetch("https://blog-api-krystian.herokuapp.com/signup", {
-      method: "post",
-      body: JSON.stringify({ username, password }),
-      headers: { "Content-Type": "application/json" },
-    });
+    let result = await fetch(
+      "https://blog-api-krystian.herokuapp.com/users/signup",
+      {
+        method: "post",
+        body: JSON.stringify({ username, password }),
+        headers: { "Content-Type": "application/json" },
+      }
+    );
     result = await result.json();
     console.warn(result);
     if (result.error) {

@@ -78,3 +78,8 @@ textarea {
 .update-post {
   display: inline-block;
 }
+
+.create-post {
+  display: flex;
+  justify-content: center;
+}
