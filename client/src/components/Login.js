@@ -12,7 +12,7 @@ const Login = () => {
     }
   }, []);
   const handleLogin = async () => {
-    let result = await fetch("http://localhost:5000/login", {
+    let result = await fetch("http://localhost:5000/users/login", {
       method: "post",
       body: JSON.stringify({ username, password }),
       headers: { "Content-Type": "application/json" },

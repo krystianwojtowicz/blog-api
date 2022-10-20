@@ -21,38 +21,40 @@ const CreatePost = (props) => {
   };
   return (
     <div className="create-post">
-      <h1>Create Post</h1>
-      {/* <input
+      <div>
+        <h1>Create Post</h1>
+        {/* <input
         className="inputBox"
         type="text"
         placeholder="enter title"
         value={author}
         onChange={(e) => setAuthor(e.target.value)}
       /> */}
-      <input
-        className="inputBox"
-        type="text"
-        placeholder="enter title"
-        value={title}
-        onChange={(e) => setTitle(e.target.value)}
-      />
-      <textarea
-        className="inputBox"
-        maxLength="100"
-        type="text"
-        value={content}
-        onChange={(e) => setContent(e.target.value)}
-      />
-      <button
-        className="appButton"
-        type="button"
-        onClick={() => {
-          handleCreate();
-          props.handleGetPosts();
-        }}
-      >
-        Post
-      </button>
+        <input
+          className="inputBox"
+          type="text"
+          placeholder="enter title"
+          value={title}
+          onChange={(e) => setTitle(e.target.value)}
+        />
+        <textarea
+          className="inputBox"
+          maxLength="100"
+          type="text"
+          value={content}
+          onChange={(e) => setContent(e.target.value)}
+        />
+        <button
+          className="appButton"
+          type="button"
+          onClick={() => {
+            handleCreate();
+            props.handleGetPosts();
+          }}
+        >
+          Post
+        </button>
+      </div>
     </div>
   );
 };
