@@ -14,7 +14,9 @@ const PostDetails = (props) => {
   }, []);
 
   const getProductDetails = async () => {
-    let result = await fetch(`http://localhost:5000/posts/${props._id}`);
+    let result = await fetch(
+      `https://blog-api-krystian.herokuapp.com/posts/${props._id}`
+    );
     result = await result.json();
     setTitle(result.title);
     setContent(result.content);
