@@ -28,24 +28,3 @@ router.delete("/:id", postController.delete_post);
 router.put("/:id", postController.update_post);
 
 module.exports = router;
-
-// iwtotb
-// const Post = require("../models/post");
-// var express = require("express");
-// var router = express.Router();
-// const postController = require("../controllers/postController");
-
-// /* GET posts listing. */
-// router.get("/", async (req, res, next) => {
-//   const posts = await Post.find();
-//   if (posts.length > 0) {
-//     res.send(posts);
-//     // return res.json(posts);
-//   } else {
-//     res.send({ result: "No Post found" });
-//   }
-// });
-
-// // router.post("/signup", userController.signup_post);
-
-// module.exports = router;

@@ -23,29 +23,11 @@ function App() {
   const handleGetPosts = () => {
     getPosts();
   };
-  // const [backendData, setBackendData] = useState({});
-  // useEffect(() => {
-  //   fetch("/api")
-  //     .then((response) => response.json())
-  //     .then((data) => {
-  //       setBackendData(data);
-  //     });
-  // }, []);
   return (
     <div>
       <BrowserRouter>
         <Nav></Nav>
         <Routes>
-          {/* <Route path="/posts" element={<Posts />}></Route> */}
-          {/* {posts.map((post) => (
-            <Route
-              key={post._id}
-              path={`/${post._id}`}
-              render={() => (
-                <PostDetails {...post} posts={posts} setPosts={setPosts} />
-              )}
-            ></Route>
-          ))} */}
           {posts.map((post) => (
             <Route
               key={post._id}
@@ -55,7 +37,6 @@ function App() {
               }
             ></Route>
           ))}
-          {/* <Route path="/:id" element={<PostDetails />}></Route> */}
           <Route path="/" element={<Posts />}></Route>
           <Route path="/signup" element={<SignUp />}></Route>
           <Route path="/login" element={<Login />}></Route>
@@ -65,11 +46,6 @@ function App() {
           ></Route>
         </Routes>
       </BrowserRouter>
-      {/* {typeof backendData.users === "undefined" ? (
-        <p>Loading...</p>
-      ) : (
-        backendData.users.map((user, i) => <p key={i}>{user}</p>)
-      )} */}
     </div>
   );
 }

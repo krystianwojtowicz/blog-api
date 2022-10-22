@@ -11,7 +11,6 @@ const Posts = () => {
     result = await result.json();
     setPosts(result);
   };
-  // console.log(posts);
   return (
     <div className="post-list">
       <h1>Posts</h1>
@@ -23,12 +22,7 @@ const Posts = () => {
             title={item.title}
             content={item.content}
             author={item.author}
-          >
-            {/* <Link to={`/${item._id}`}>
-              <h4>title={item.title}</h4>
-            </Link>
-            <p>{item.content}</p> */}
-          </Post>
+          ></Post>
         ))}
       </div>
     </div>

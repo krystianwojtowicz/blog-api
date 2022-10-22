@@ -4,7 +4,6 @@ import React, { useState, useEffect } from "react";
 const SignUp = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  // const [confirmPassword, setConfirmPassword] = useState("");
   const navigate = useNavigate();
   useEffect(() => {
     const auth = localStorage.getItem("user");
@@ -13,11 +12,7 @@ const SignUp = () => {
     }
   }, []);
   const collectData = async () => {
-    console.log(
-      username,
-      password
-      //  confirmPassword
-    );
+    console.log(username, password);
     let result = await fetch(
       "https://blog-api-krystian.herokuapp.com/users/signup",
       {
@@ -31,7 +26,6 @@ const SignUp = () => {
     if (result.error) {
       alert(JSON.stringify(result.error));
     }
-    // localStorage.setItem("user", JSON.stringify(result));
   };
   return (
     <div className="register">
@@ -50,13 +44,6 @@ const SignUp = () => {
         value={password}
         onChange={(e) => setPassword(e.target.value)}
       />
-      {/* <input
-        className="inputBox"
-        type="password"
-        placeholder="confirm password"
-        value={confirmPassword}
-        onChange={(e) => setConfirmPassword(e.target.value)}
-      /> */}
       <button onClick={collectData} className="appButton" type="button">
         Sign Up
       </button>

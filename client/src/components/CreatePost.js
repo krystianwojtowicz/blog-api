@@ -4,8 +4,6 @@ const CreatePost = (props) => {
   const author = JSON.parse(localStorage.getItem("user")).username;
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
-  // const [author, setAuthor] = useState("");
-  // schowane nowe
   const handleCreate = async () => {
     console.log(title, content);
     let result = await fetch(
@@ -26,13 +24,6 @@ const CreatePost = (props) => {
     <div className="create-post">
       <div>
         <h1>Create Post</h1>
-        {/* <input
-        className="inputBox"
-        type="text"
-        placeholder="enter title"
-        value={author}
-        onChange={(e) => setAuthor(e.target.value)}
-      /> */}
         <input
           className="inputBox"
           type="text"
@@ -55,7 +46,7 @@ const CreatePost = (props) => {
             props.handleGetPosts();
           }}
         >
-          Post
+          Create Post
         </button>
       </div>
     </div>

@@ -34,9 +34,6 @@ const PostDetails = (props) => {
     );
     result = await result.json();
     console.log(result);
-    // if (result) {
-    //   navigate("/");
-    // }
   };
 
   const deletePost = async () => {
@@ -55,7 +52,6 @@ const PostDetails = (props) => {
   };
   return (
     <div className="post-details">
-      {/* <h1>{JSON.stringify(params.id)}</h1> */}
       <h1>title: {props.title}</h1>
       <p>content: {props.content}</p>
       <p>author: {props.author}</p>
