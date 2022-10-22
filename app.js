@@ -17,16 +17,16 @@ var app = express();
 
 // Set up mongoose
 const mongoose = require("mongoose");
-const mongoDB =
-  "mongodb+srv://m0001-student:Komputer8@cluster0.sskqvig.mongodb.net/?retryWrites=true&w=majority";
-// const mongoDB = process.env.MONGO;
+// const mongoDB =
+//   "mongodb+srv://m0001-student:Komputer8@cluster0.sskqvig.mongodb.net/?retryWrites=true&w=majority";
+const mongoDB = process.env.MONGO;
 mongoose.connect(mongoDB, { useNewUrlParser: true, useUnifiedTopology: true });
 const db = mongoose.connection;
 db.on("error", console.error.bind(console, "MongoDB connection error"));
 
 // // view engine setup
-app.set("views", path.join(__dirname, "views"));
-app.set("view engine", "jade");
+// app.set("views", path.join(__dirname, "views"));
+// app.set("view engine", "jade");
 
 // const func = async () => {
 //   const data = await Post.find();
