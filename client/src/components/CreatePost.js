@@ -1,9 +1,11 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const CreatePost = (props) => {
   const author = JSON.parse(localStorage.getItem("user")).username;
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
+  const navigate = useNavigate();
   // const [author, setAuthor] = useState("");
   // schowane nowe
   const handleCreate = async () => {
@@ -18,6 +20,7 @@ const CreatePost = (props) => {
     });
     result = await result.json();
     console.warn(result);
+    navigate("/");
   };
   return (
     <div className="create-post">

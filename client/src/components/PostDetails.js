@@ -29,6 +29,7 @@ const PostDetails = (props) => {
     });
     result = await result.json();
     console.log(result);
+    navigate("/");
     // if (result) {
     //   navigate("/");
     // }

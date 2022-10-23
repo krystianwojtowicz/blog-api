@@ -64,6 +64,38 @@ exports.update_post = async (req, res) => {
 //   });
 // };
 
+// exports.create_post = [
+//   body("title", "Title cannot be empty").trim().isLength({ min: 1 }).escape(),
+//   body("content", "Title cannot be empty").trim().isLength({ min: 1 }),
+//   async (req, res, next) => {
+//     const errors = validationResult(req.body);
+//     if (!errors.isEmpty()) return res.json({ errors: errors.array() });
+//     let post = new Post(req.body);
+//     // let post = new Post({
+//     //   title: req.body.title,
+//     //   content: req.body.content,
+//     //   author: req.body.author,
+//     //   // author: res.locals.currentUser.username,
+//     // });
+//     // post.author = res.locals.currentUser;
+
+//     // const savePost = await post.save();
+//     // if (savePost) {
+//     //   return res.status(201).json({
+//     //     message: "Post created",
+//     //     post,
+//     //   });
+//     // }
+//     await post.save((err) => {
+//       if (err) return next(err);
+//       return res.status(201).json({
+//         message: "Post created",
+//         post,
+//       });
+//     });
+//   },
+// ];
+
 exports.create_post = async (req, res, next) => {
   try {
     let post = new Post(req.body);
@@ -91,7 +123,6 @@ exports.create_post = async (req, res, next) => {
     });
   }
 };
-
 // exports.create_post = async (req, res, next) => {
 //   try {
 //     await Post.create(req.body);
