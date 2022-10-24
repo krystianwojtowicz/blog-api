@@ -1,9 +1,4 @@
-<<<<<<< HEAD
-const createError = require("http-errors");
-const jwt = require("jsonwebtoken");
-=======
 var createError = require("http-errors");
->>>>>>> 90fcf92 (wrapping inputs in the form)
 require("dotenv").config();
 const cors = require("cors");
 const User = require("./models/user");
