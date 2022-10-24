@@ -6,9 +6,8 @@ const CreatePost = (props) => {
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
   const navigate = useNavigate();
-  // const [author, setAuthor] = useState("");
-  // schowane nowe
-  const handleCreate = async () => {
+  const handleCreate = async (e) => {
+    e.preventDefault();
     console.log(title, content);
     let result = await fetch(
       "https://blog-api-krystian.herokuapp.com/posts/create-post",
@@ -29,30 +28,30 @@ const CreatePost = (props) => {
     <div className="create-post">
       <div>
         <h1>Create Post</h1>
-        <input
-          className="inputBox"
-          type="text"
-          placeholder="enter title"
-          value={title}
-          onChange={(e) => setTitle(e.target.value)}
-        />
-        <textarea
-          className="inputBox"
-          maxLength="100"
-          type="text"
-          value={content}
-          onChange={(e) => setContent(e.target.value)}
-        />
-        <button
-          className="appButton"
-          type="button"
-          onClick={() => {
-            handleCreate();
+        <form
+          onSubmit={(e) => {
+            handleCreate(e);
             props.handleGetPosts();
           }}
         >
-          Create Post
-        </button>
+          <input
+            className="inputBox"
+            type="text"
+            placeholder="enter title"
+            value={title}
+            onChange={(e) => setTitle(e.target.value)}
+          />
+          <textarea
+            className="inputBox"
+            maxLength="100"
+            type="text"
+            value={content}
+            onChange={(e) => setContent(e.target.value)}
+          />
+          <button className="appButton" type="submit">
+            Create Post
+          </button>
+        </form>
       </div>
     </div>
   );
