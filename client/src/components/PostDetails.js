@@ -22,7 +22,8 @@ const PostDetails = (props) => {
     setContent(result.content);
   };
 
-  const handleUpdate = async () => {
+  const handleUpdate = async (e) => {
+    e.preventDefault();
     console.log(title, content);
     let result = await fetch(
       `https://blog-api-krystian.herokuapp.com/posts/${props._id}`,
@@ -40,8 +41,7 @@ const PostDetails = (props) => {
     // }
   };
 
-  const deletePost = async (e) => {
-    e.preventDefault();
+  const deletePost = async () => {
     console.warn(props._id);
     let result = await fetch(
       `https://blog-api-krystian.herokuapp.com/posts/${props._id}`,
