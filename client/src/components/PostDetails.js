@@ -65,7 +65,7 @@ const PostDetails = (props) => {
           <button className="appButton" onClick={deletePost}>
             Delete Post
           </button>
-          <form onSubmit={(e) => deletePost(e)}>
+          <form onSubmit={(e) => handleUpdate(e)}>
             <input
               className="inputBox"
               type="text"
