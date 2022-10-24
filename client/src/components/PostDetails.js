@@ -20,7 +20,8 @@ const PostDetails = (props) => {
     setContent(result.content);
   };
 
-  const handleUpdate = async () => {
+  const handleUpdate = async (e) => {
+    e.preventDefault();
     console.log(title, content);
     let result = await fetch(`http://localhost:5000/posts/${props._id}`, {
       method: "Put",
@@ -35,8 +36,7 @@ const PostDetails = (props) => {
     // }
   };
 
-  const deletePost = async (e) => {
-    e.preventDefault();
+  const deletePost = async () => {
     console.warn(props._id);
     let result = await fetch(`http://localhost:5000/posts/${props._id}`, {
       method: "Delete",
