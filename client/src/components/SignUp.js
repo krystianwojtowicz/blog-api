@@ -11,7 +11,8 @@ const SignUp = () => {
       navigate("/");
     }
   }, []);
-  const collectData = async () => {
+  const collectData = async (e) => {
+    e.preventDefault();
     console.log(username, password);
     let result = await fetch(
       "https://blog-api-krystian.herokuapp.com/users/signup",
@@ -27,28 +28,33 @@ const SignUp = () => {
       alert(JSON.stringify(result.error));
     }
     navigate("/");
-    // localStorage.setItem("user", JSON.stringify(result));
   };
   return (
     <div className="register">
       <h1>Register</h1>
-      <input
-        className="inputBox"
-        type="text"
-        placeholder="enter username"
-        value={username}
-        onChange={(e) => setUsername(e.target.value)}
-      />
-      <input
-        className="inputBox"
-        type="password"
-        placeholder="enter password"
-        value={password}
-        onChange={(e) => setPassword(e.target.value)}
-      />
-      <button onClick={collectData} className="appButton" type="button">
-        Sign Up
-      </button>
+      <form
+        onSubmit={(e) => {
+          collectData(e);
+        }}
+      >
+        <input
+          className="inputBox"
+          type="text"
+          placeholder="enter username"
+          value={username}
+          onChange={(e) => setUsername(e.target.value)}
+        />
+        <input
+          className="inputBox"
+          type="password"
+          placeholder="enter password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+        />
+        <button className="appButton" type="submit">
+          Sign Up
+        </button>
+      </form>
     </div>
   );
 };
