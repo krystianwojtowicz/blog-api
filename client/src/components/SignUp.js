@@ -12,7 +12,8 @@ const SignUp = () => {
       navigate("/");
     }
   }, []);
-  const collectData = async () => {
+  const collectData = async (e) => {
+    e.preventDefault();
     console.log(
       username,
       password
@@ -34,30 +35,36 @@ const SignUp = () => {
   return (
     <div className="register">
       <h1>Register</h1>
-      <input
-        className="inputBox"
-        type="text"
-        placeholder="enter username"
-        value={username}
-        onChange={(e) => setUsername(e.target.value)}
-      />
-      <input
-        className="inputBox"
-        type="password"
-        placeholder="enter password"
-        value={password}
-        onChange={(e) => setPassword(e.target.value)}
-      />
-      {/* <input
+      <form
+        onSubmit={(e) => {
+          collectData(e);
+        }}
+      >
+        <input
+          className="inputBox"
+          type="text"
+          placeholder="enter username"
+          value={username}
+          onChange={(e) => setUsername(e.target.value)}
+        />
+        <input
+          className="inputBox"
+          type="password"
+          placeholder="enter password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+        />
+        {/* <input
         className="inputBox"
         type="password"
         placeholder="confirm password"
         value={confirmPassword}
         onChange={(e) => setConfirmPassword(e.target.value)}
       /> */}
-      <button onClick={collectData} className="appButton" type="button">
-        Sign Up
-      </button>
+        <button className="appButton" type="submit">
+          Sign Up
+        </button>
+      </form>
     </div>
   );
 };
