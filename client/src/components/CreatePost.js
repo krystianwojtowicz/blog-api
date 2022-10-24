@@ -8,7 +8,8 @@ const CreatePost = (props) => {
   const navigate = useNavigate();
   // const [author, setAuthor] = useState("");
   // schowane nowe
-  const handleCreate = async () => {
+  const handleCreate = async (e) => {
+    e.preventDefault();
     console.log(title, content);
     let result = await fetch("http://localhost:5000/posts/create-post", {
       method: "post",
@@ -33,30 +34,30 @@ const CreatePost = (props) => {
         value={author}
         onChange={(e) => setAuthor(e.target.value)}
       /> */}
-        <input
-          className="inputBox"
-          type="text"
-          placeholder="enter title"
-          value={title}
-          onChange={(e) => setTitle(e.target.value)}
-        />
-        <textarea
-          className="inputBox"
-          maxLength="100"
-          type="text"
-          value={content}
-          onChange={(e) => setContent(e.target.value)}
-        />
-        <button
-          className="appButton"
-          type="button"
-          onClick={() => {
-            handleCreate();
+        <form
+          onSubmit={(e) => {
+            handleCreate(e);
             props.handleGetPosts();
           }}
         >
-          Post
-        </button>
+          <input
+            className="inputBox"
+            type="text"
+            placeholder="enter title"
+            value={title}
+            onChange={(e) => setTitle(e.target.value)}
+          />
+          <textarea
+            className="inputBox"
+            maxLength="100"
+            type="text"
+            value={content}
+            onChange={(e) => setContent(e.target.value)}
+          />
+          <button className="appButton" type="submit">
+            Create Post
+          </button>
+        </form>
       </div>
     </div>
   );

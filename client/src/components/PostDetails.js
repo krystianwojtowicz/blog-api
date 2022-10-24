@@ -35,7 +35,8 @@ const PostDetails = (props) => {
     // }
   };
 
-  const deletePost = async () => {
+  const deletePost = async (e) => {
+    e.preventDefault();
     console.warn(props._id);
     let result = await fetch(`http://localhost:5000/posts/${props._id}`, {
       method: "Delete",
@@ -54,30 +55,28 @@ const PostDetails = (props) => {
       <p>author: {props.author}</p>
       {user === props.author ? (
         <div className="update-post">
-          <button onClick={deletePost}>Delete</button>
-          <input
-            className="inputBox"
-            type="text"
-            placeholder="enter title"
-            value={title}
-            onChange={(e) => setTitle(e.target.value)}
-          />
-          <textarea
-            className="inputBox"
-            maxLength="100"
-            type="text"
-            value={content}
-            onChange={(e) => setContent(e.target.value)}
-          />
-          <button
-            className="appButton"
-            type="button"
-            onClick={() => {
-              handleUpdate();
-            }}
-          >
-            Update
+          <button className="appButton" onClick={deletePost}>
+            Delete Post
           </button>
+          <form onSubmit={(e) => deletePost(e)}>
+            <input
+              className="inputBox"
+              type="text"
+              placeholder="enter title"
+              value={title}
+              onChange={(e) => setTitle(e.target.value)}
+            />
+            <textarea
+              className="inputBox"
+              maxLength="100"
+              type="text"
+              value={content}
+              onChange={(e) => setContent(e.target.value)}
+            />
+            <button className="appButton" type="submit">
+              Update Post
+            </button>
+          </form>
         </div>
       ) : null}
     </div>

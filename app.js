@@ -1,5 +1,4 @@
 var createError = require("http-errors");
-const jwt = require("jsonwebtoken");
 require("dotenv").config();
 const cors = require("cors");
 const User = require("./models/user");
