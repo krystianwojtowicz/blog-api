@@ -154,6 +154,7 @@ const CreatePost = (props) => {
   const handleCreate = async (e) => {
     e.preventDefault();
     console.log(title, content);
+
     let result = await fetch(
       "https://blog-api-krystian.herokuapp.com/posts/create-post",
       // let result = Axios.post(
@@ -163,7 +164,7 @@ const CreatePost = (props) => {
         body: JSON.stringify({ title, content, author }),
         headers: {
           "Content-Type": "application/json",
-          authorization: JSON.parse(localStorage.getItem("token")),
+          authorization: localStorage.getItem("token"),
         },
       }
     );
