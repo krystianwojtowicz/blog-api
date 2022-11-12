@@ -30,8 +30,8 @@ function App() {
       });
   };
 
-  const handleGetPosts = () => {
-    getPosts();
+  const getCreatedPost = (data) => {
+    setPosts((prevState) => [...prevState, data]);
   };
   return (
     <div>
@@ -52,7 +52,12 @@ function App() {
           <Route path="/login" element={<Login />}></Route>
           <Route
             path="/create-post"
-            element={<CreatePost handleGetPosts={handleGetPosts} />}
+            element={
+              <CreatePost
+                getCreatedPost={getCreatedPost}
+                // handleGetPosts={handleGetPosts}
+              />
+            }
           ></Route>
         </Routes>
       </BrowserRouter>

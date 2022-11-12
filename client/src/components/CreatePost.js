@@ -31,6 +31,10 @@ const CreatePost = (props) => {
     )
       .then((res) => {
         console.log(res.data);
+        props.getCreatedPost(res.data.post);
+
+        // props.setPosts((prevState) => [...prevState, res.data]);
+        // przekazac res.data wyzej
       })
       .catch((err) => {
         console.error(err);
@@ -46,7 +50,7 @@ const CreatePost = (props) => {
         <form
           onSubmit={(e) => {
             handleCreate(e);
-            props.handleGetPosts();
+            // props.handleGetPosts();
           }}
         >
           <input
