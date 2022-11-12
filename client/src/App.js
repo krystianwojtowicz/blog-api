@@ -7,6 +7,7 @@ import CreatePost from "./components/CreatePost";
 import Posts from "./components/Posts";
 import PostDetails from "./components/PostDetails";
 import { useEffect, useState } from "react";
+import Axios from "axios";
 
 function App() {
   const [posts, setPosts] = useState([]);
@@ -14,10 +15,19 @@ function App() {
     getPosts();
   }, []);
 
-  const getPosts = async () => {
-    let result = await fetch("https://blog-api-krystian.herokuapp.com/posts");
-    result = await result.json();
-    setPosts(result);
+  // const getPosts = async () => {
+  //   let result = await fetch("http://localhost:5000/posts");
+  //   result = await result.json();
+  //   setPosts(result);
+  // };
+  const getPosts = () => {
+    Axios.get("https://blog-api-krystian.herokuapp.com/posts")
+      .then((res) => {
+        setPosts(res.data);
+      })
+      .catch((err) => {
+        console.error(err.response);
+      });
   };
 
   const handleGetPosts = () => {

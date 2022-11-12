@@ -1,9 +1,15 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import Axios from "axios";
 
 const Login = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  let headers = {
+    headers: {
+      "Content-Type": "application/json",
+    },
+  };
   const navigate = useNavigate();
   useEffect(() => {
     const auth = localStorage.getItem("user");
@@ -11,45 +17,70 @@ const Login = () => {
       navigate("/");
     }
   }, []);
-  const handleLogin = async () => {
-    let result = await fetch(
+  const handleLogin = (e) => {
+    e.preventDefault();
+    const payload = {
+      username: username,
+      password: password,
+    };
+    Axios.post(
       "https://blog-api-krystian.herokuapp.com/users/login",
-      {
-        method: "post",
-        body: JSON.stringify({ username, password }),
-        headers: { "Content-Type": "application/json" },
-      }
-    );
-    result = await result.json();
-    console.warn(result);
-    if (result.auth) {
-      localStorage.setItem("user", JSON.stringify(result.user));
-      localStorage.setItem("token", JSON.stringify(result.auth));
-      navigate("/");
-    } else {
-      alert("Please enter correct details");
-    }
+      payload,
+      headers
+    )
+      .then((res) => {
+        if (res.data.auth) {
+          localStorage.setItem("user", JSON.stringify(res.data.user));
+          console.log(JSON.stringify(res.data.user));
+          localStorage.setItem("token", res.data.auth);
+          navigate("/");
+        } else {
+          alert("Please enter correct details");
+        }
+      })
+      .catch((err) => {
+        console.error(err.response);
+      });
   };
+  // const handleLogin = async (e) => {
+  //   e.preventDefault();
+  //   let result = await fetch("http://localhost:5000/users/login", {
+  //     method: "post",
+  //     body: JSON.stringify({ username, password }),
+  //     headers: { "Content-Type": "application/json" },
+  //   });
+  //   result = await result.json();
+  //   console.warn(result);
+  //   if (result.auth) {
+  //     localStorage.setItem("user", JSON.stringify(result.user));
+  //     localStorage.setItem("token", JSON.stringify(result.auth));
+  //     navigate("/");
+  //   } else {
+  //     alert("Please enter correct details");
+  //   }
+  // };
   return (
     <div className="login">
       <h1>Login</h1>
-      <input
-        className="inputBox"
-        type="text"
-        placeholder="enter username"
-        value={username}
-        onChange={(e) => setUsername(e.target.value)}
-      />
-      <input
-        className="inputBox"
-        type="password"
-        placeholder="enter password"
-        value={password}
-        onChange={(e) => setPassword(e.target.value)}
-      />
-      <button className="appButton" type="button" onClick={handleLogin}>
-        Login
-      </button>
+      <form onSubmit={(e) => handleLogin(e)}>
+        <input
+          className="inputBox"
+          type="text"
+          placeholder="enter username"
+          value={username}
+          onChange={(e) => setUsername(e.target.value)}
+        />
+        <input
+          className="inputBox"
+          type="password"
+          placeholder="enter password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+        />
+        <button className="appButton" type="submit">
+          Login
+        </button>
+      </form>
     </div>
   );
 };
