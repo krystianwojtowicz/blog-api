@@ -4,26 +4,39 @@ import Axios from "axios";
 
 const CreatePost = (props) => {
   const author = JSON.parse(localStorage.getItem("user")).username;
+  // console.log(localStorage.getItem("token"));
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
   const navigate = useNavigate();
-  const handleCreate = async (e) => {
+  let headers = {
+    headers: {
+      "Content-Type": "application/json",
+      authorization: localStorage.getItem("token"),
+    },
+  };
+  const handleCreate = (e) => {
     e.preventDefault();
     console.log(title, content);
-
-    let result = await fetch(
+    const payload = {
+      title: title,
+      content: content,
+      author: author,
+    };
+    // let result = await fetch(
+    //   "https://blog-api-krystian.herokuapp.com/posts/create-post",
+    Axios.post(
       "https://blog-api-krystian.herokuapp.com/posts/create-post",
-      {
-        method: "post",
-        body: JSON.stringify({ title, content, author }),
-        headers: {
-          "Content-Type": "application/json",
-          authorization: localStorage.getItem("token"),
-        },
-      }
-    );
-    result = await result.json();
-    console.warn(result);
+      payload,
+      headers
+    )
+      .then((res) => {
+        console.log(res.data);
+      })
+      .catch((err) => {
+        console.error(err);
+      });
+    // result = await result.json();
+    // console.warn(result);
     navigate("/");
   };
   return (
