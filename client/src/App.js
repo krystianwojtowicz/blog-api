@@ -8,31 +8,39 @@ import Posts from "./components/Posts";
 import PostDetails from "./components/PostDetails";
 import { useEffect, useState } from "react";
 import Axios from "axios";
+import { useDispatch, useSelector } from "react-redux";
+import { getPosts } from "./actions/appActions";
 
 function App() {
-  const [posts, setPosts] = useState([]);
+  const dispatch = useDispatch();
+  const posts = useSelector((state) => state.posts);
+  console.log(posts);
+
+  // const [posts, setPosts] = useState([]);
   useEffect(() => {
-    getPosts();
-  }, []);
+    // getPosts();
+    dispatch(getPosts);
+  }, [dispatch]);
 
   // const getPosts = async () => {
   //   let result = await fetch("http://localhost:5000/posts");
   //   result = await result.json();
   //   setPosts(result);
   // };
-  const getPosts = () => {
-    Axios.get("http://localhost:5000/posts")
-      .then((res) => {
-        setPosts(res.data);
-      })
-      .catch((err) => {
-        console.error(err.response);
-      });
-  };
 
-  const getCreatedPost = (data) => {
-    setPosts((prevState) => [...prevState, data]);
-  };
+  // const getPosts = () => {
+  //   Axios.get("http://localhost:5000/posts")
+  //     .then((res) => {
+  //       setPosts(res.data);
+  //     })
+  //     .catch((err) => {
+  //       console.error(err.response);
+  //     });
+  // };
+
+  // const getCreatedPost = (data) => {
+  //   setPosts((prevState) => [...prevState, data]);
+  // };
 
   // const handleGetPosts = () => {
   //   getPosts();
@@ -61,15 +69,33 @@ function App() {
               )}
             ></Route>
           ))} */}
-          {posts.map((post) => (
+          {posts &&
+            posts.map((post) => (
+              <Route
+                key={post._id}
+                path={`/${post._id}`}
+                element={
+                  <PostDetails
+                    {...post}
+                    posts={posts}
+                    // setPosts={setPosts}
+                  />
+                }
+              ></Route>
+            ))}
+          {/* {posts.map((post) => (
             <Route
               key={post._id}
               path={`/${post._id}`}
               element={
-                <PostDetails {...post} posts={posts} setPosts={setPosts} />
+                <PostDetails
+                  {...post}
+                  posts={posts}
+                  // setPosts={setPosts}
+                />
               }
             ></Route>
-          ))}
+          ))} */}
           {/* <Route path="/:id" element={<PostDetails />}></Route> */}
           <Route path="/" element={<Posts />}></Route>
           <Route path="/signup" element={<SignUp />}></Route>
@@ -78,8 +104,8 @@ function App() {
             path="/create-post"
             element={
               <CreatePost
-                getCreatedPost={getCreatedPost}
-                // handleGetPosts={handleGetPosts}
+              // getCreatedPost={getCreatedPost}
+              // handleGetPosts={handleGetPosts}
               />
             }
           ></Route>
