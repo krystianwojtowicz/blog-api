@@ -48,7 +48,7 @@ function App() {
   // }, []);
   return (
     <div>
-      <BrowserRouter>
+      <BrowserRouter basename={process.env.PUBLIC_URL}>
         <Nav></Nav>
         <Routes>
           {/* <Route path="/posts" element={<Posts />}></Route> */}
