@@ -1,8 +1,14 @@
 import React, { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { LogIn } from "../actions/authActions";
 import { useNavigate } from "react-router-dom";
 import Axios from "axios";
 
 const Login = () => {
+  const auth = useSelector((state) => state.auth);
+  const dispatch = useDispatch();
+  const state = useSelector((state) => state);
+  console.log(state);
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   let headers = {
@@ -19,25 +25,35 @@ const Login = () => {
   }, []);
   const handleLogin = (e) => {
     e.preventDefault();
+
+    dispatch(LogIn(username, password));
     const payload = {
       username: username,
       password: password,
     };
-    Axios.post("http://localhost:5000/users/login", payload, headers)
-      .then((res) => {
-        if (res.data.auth) {
-          localStorage.setItem("user", JSON.stringify(res.data.user));
-          console.log(JSON.stringify(res.data.user));
-          localStorage.setItem("token", res.data.auth);
-          navigate("/");
-        } else {
-          alert("Please enter correct details");
-        }
-      })
-      .catch((err) => {
-        console.error(err.response);
-      });
+    // console.log(state);
+    // Axios.post("http://localhost:5000/users/login", payload, headers)
+    //   .then((res) => {
+    //     if (res.data.auth) {
+    //       localStorage.setItem("user", JSON.stringify(res.data.user));
+    //       console.log(JSON.stringify(res.data.user));
+    //       localStorage.setItem("token", res.data.auth);
+    //       // localStorage.setItem("user", JSON.stringify(res.data.user));
+    //       // // console.log(JSON.stringify(res.data.user));
+    //       // localStorage.setItem("token", res.data.auth);
+    //       // console.log(localStorage.getItem("user"));
+    //       // console.log(localStorage.getItem("token"));
+    //       navigate("/");
+    //     } else {
+    //       alert("Please enter correct details");
+    //     }
+    //   })
+    //   .catch((err) => {
+    //     console.error(err.response);
+    //   });
+    navigate("/");
   };
+
   // const handleLogin = async (e) => {
   //   e.preventDefault();
   //   let result = await fetch("http://localhost:5000/users/login", {

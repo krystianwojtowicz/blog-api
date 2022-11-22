@@ -7,9 +7,8 @@ import CreatePost from "./components/CreatePost";
 import Posts from "./components/Posts";
 import PostDetails from "./components/PostDetails";
 import { useEffect, useState } from "react";
-import Axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
-import { getPosts } from "./actions/appActions";
+import { getPosts } from "./actions/postActions";
 
 function App() {
   const dispatch = useDispatch();
@@ -19,7 +18,7 @@ function App() {
   // const [posts, setPosts] = useState([]);
   useEffect(() => {
     // getPosts();
-    dispatch(getPosts);
+    dispatch(getPosts());
   }, [dispatch]);
 
   // const getPosts = async () => {

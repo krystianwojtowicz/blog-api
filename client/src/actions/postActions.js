@@ -21,18 +21,61 @@ export const getPosts = () => {
   };
 };
 
-export const createPost = (title, author, content) => {
-  return (dispatch, getState) => {
-    const payload = {
-      title: title,
-      content: content,
-      author: author,
-    };
+// export const getPost = (id) => {
+//   return (dispatch) => {
+//     axios
+//       .get(`http://localhost:5000/posts/${id}`)
+//       .then((post) => {
+//         dispatch({
+//           type: "GET_POST",
+//           post,
+//         });
+//       })
+//       .catch((error) => {
+//         console.log(error.response);
+//       });
+//   };
+// };
+
+export const createPost = (payload) => {
+  let headers = {
+    headers: {
+      "Content-Type": "application/json",
+      authorization: localStorage.getItem("token"),
+    },
+  };
+  return (
+    dispatch
+    // , getState
+  ) => {
+    // const payload = {
+    //   title: title,
+    //   content: content,
+    //   // author: getState().auth.username,
+    //   author: author,
+    // };
     axios
-      .post("http://localhost:5000/posts/create-post", payload)
-      .then((payload) => {
+      .post("http://localhost:5000/posts/create-post", { ...payload }, headers)
+      .then((post) => {
         dispatch({
           type: "CREATE_POST",
+          post,
+        });
+      })
+      .catch((error) => {
+        console.log(error.response);
+      });
+  };
+};
+
+export const updatePost = (payload, _id) => {
+  return (dispatch) => {
+    axios
+      .put(`http://localhost:5000/posts/${_id}`, payload)
+      .then((payload) => {
+        console.warn("2");
+        dispatch({
+          type: "UPDATE_POST",
           payload,
         });
       })
@@ -42,29 +85,14 @@ export const createPost = (title, author, content) => {
   };
 };
 
-export const updatePost = (
-  title,
-  author,
-  // requires id - how to add it?
-  content,
-  _id
-) => {
+export const deletePost = (id) => {
   return (dispatch) => {
-    const payload = {
-      title: title,
-      content: content,
-      author: author,
-    };
     axios
-      .put(
-        `http://localhost:5000/posts`,
-        // /id behind post should be
-        payload
-      )
-      .then((payload) => {
+      .delete(`http://localhost:5000/posts/${id}`)
+      .then(() => {
         dispatch({
-          type: "UPDATE_POST",
-          payload,
+          type: "DELETE_POST",
+          id,
         });
       })
       .catch((error) => {

@@ -1,8 +1,13 @@
 import { useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
 import React, { useState, useEffect } from "react";
 import Axios from "axios";
+import { signUp } from "../actions/authActions";
 
 const SignUp = () => {
+  const dispatch = useDispatch();
+  const state = useSelector((state) => state);
+  console.log(state);
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   let headers = {
@@ -20,18 +25,23 @@ const SignUp = () => {
   }, []);
   const collectData = async (e) => {
     e.preventDefault();
+
+    dispatch(signUp(username, password));
+
     console.log(username, password);
+    console.log(state);
     const payload = {
       username: username,
       password: password,
     };
-    Axios.post("/users/signup", payload, headers)
-      .then((res) => {
-        console.log(res.data);
-      })
-      .catch((err) => {
-        console.error(err.response);
-      });
+    // Axios.post("/users/signup", payload, headers)
+    //   .then((res) => {
+    //     console.log(res.data);
+    //   })
+    //   .catch((err) => {
+    //     console.error(err.response);
+    //   });
+
     // let result = await fetch("http://localhost:5000/users/signup", {
     //   method: "post",
     //   body: JSON.stringify({ username, password }),

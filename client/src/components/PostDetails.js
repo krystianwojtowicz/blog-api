@@ -2,12 +2,19 @@ import React from "react";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
-import Axios from "axios";
+import { useDispatch, useSelector } from "react-redux";
+import { updatePost, deletePost } from "../actions/postActions";
+// import { deletePost } from "../actions/postActions";
 
 const PostDetails = (props) => {
+  const dispatch = useDispatch();
   const user = JSON.parse(localStorage.getItem("user")) || "";
   // const user = JSON.parse(localStorage.getItem("user")).username;
   const navigate = useNavigate();
+  const posts = useSelector((state) =>
+    state.posts.filter((post) => post._id === props._id)
+  );
+  const post = posts[0];
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
   let headers = {
@@ -15,47 +22,55 @@ const PostDetails = (props) => {
       "Content-Type": "application/json",
     },
   };
-
+  // useEffect(() => {
+  //   dispatch(getPost(props._id));
+  // }, [dispatch]);
   useEffect(() => {
-    getProductDetails();
+    setTitle(post.title);
+    setContent(post.content);
   }, []);
+  // useEffect(() => {
+  //   getProductDetails();
+  // }, []);
+  // const getProductDetails = () => {
+  //   // const payload = {
+  //   //   title: title,
+  //   //   content: content,
+  //   // };
+  //   Axios.get(`http://localhost:5000/posts/${props._id}`)
+  //     .then((res) => {
+  //       setTitle(res.data.title);
+  //       setContent(res.data.content);
+  //     })
+  //     .catch((err) => {
+  //       console.error(err.response);
+  //     });
+  // };
 
-  const getProductDetails = () => {
-    // const payload = {
-    //   title: title,
-    //   content: content,
-    // };
-    Axios.get(`http://localhost:5000/posts/${props._id}`)
-      .then((res) => {
-        setTitle(res.data.title);
-        setContent(res.data.content);
-      })
-      .catch((err) => {
-        console.error(err.response);
-      });
-  };
   // const getProductDetails = async () => {
   //   let result = await fetch(`http://localhost:5000/posts/${props._id}`);
   //   result = await result.json();
   //   setTitle(result.title);
   //   setContent(result.content);
   // };
-
   const handleUpdate = (e) => {
     e.preventDefault();
-    console.log(title, content);
     const payload = {
       title: title,
       content: content,
+      author: user.username,
     };
-    Axios.put(`http://localhost:5000/posts/${props._id}`, payload, headers)
-      .then((res) => {
-        setTitle(res.data.title);
-        setContent(res.data.content);
-      })
-      .catch((err) => {
-        console.error(err.response);
-      });
+    dispatch(updatePost(payload, props._id));
+    // console.log(title, content);
+
+    // Axios.put(`http://localhost:5000/posts/${props._id}`, payload, headers)
+    //   .then((res) => {
+    //     setTitle(res.data.title);
+    //     setContent(res.data.content);
+    //   })
+    //   .catch((err) => {
+    //     console.error(err.response);
+    //   });
     navigate("/");
     // if (result) {
     //   navigate("/");
@@ -77,14 +92,19 @@ const PostDetails = (props) => {
   //   // }
   // };
 
-  const deletePost = () => {
-    console.warn(props._id);
-    let result = Axios.delete(`http://localhost:5000/posts/${props._id}`);
-    if (result) {
-      alert("post deleted");
-      navigate("/");
-    }
+  const handleDeletePost = () => {
+    dispatch(deletePost(props._id));
+    alert("post deleted");
+    navigate("/");
   };
+  // const deletePost = () => {
+  //   console.warn(props._id);
+  //   let result = Axios.delete(`http://localhost:5000/posts/${props._id}`);
+  //   if (result) {
+  //     alert("post deleted");
+  //     navigate("/");
+  //   }
+  // };
   // const deletePost = async () => {
   //   console.warn(props._id);
   //   let result = await fetch(`http://localhost:5000/posts/${props._id}`, {
@@ -104,7 +124,7 @@ const PostDetails = (props) => {
       <p>author: {props.author}</p>
       {user.username === props.author ? (
         <div className="update-post">
-          <button className="appButton" onClick={deletePost}>
+          <button className="appButton" onClick={handleDeletePost}>
             Delete Post
           </button>
           <form onSubmit={(e) => handleUpdate(e)}>
