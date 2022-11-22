@@ -1,15 +1,13 @@
 import { useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
 import React, { useState, useEffect } from "react";
-import Axios from "axios";
+import { signUp } from "../actions/authActions";
 
 const SignUp = () => {
+  const dispatch = useDispatch();
+  const state = useSelector((state) => state);
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  let headers = {
-    headers: {
-      "Content-Type": "application/json",
-    },
-  };
   const navigate = useNavigate();
   useEffect(() => {
     const auth = localStorage.getItem("user");
@@ -19,37 +17,11 @@ const SignUp = () => {
   }, []);
   const collectData = async (e) => {
     e.preventDefault();
-    console.log(username, password);
-    // let result = await fetch(
-    //   "https://blog-api-krystian.herokuapp.com/users/signup",
-    //   {
-    //     method: "post",
-    //     body: JSON.stringify({ username, password }),
-    //     headers: { "Content-Type": "application/json" },
-    //   }
-    // );
-    // result = await result.json();
-    // console.warn(result);
-    // if (result.error) {
-    //   alert(JSON.stringify(result.error));
-    // }
-
+    dispatch(signUp(username, password));
     const payload = {
       username: username,
       password: password,
     };
-    Axios.post(
-      "https://blog-api-krystian.herokuapp.com/users/signup",
-      payload,
-      headers
-    )
-      .then((res) => {
-        console.log(res.data);
-      })
-      .catch((err) => {
-        console.error(err.response);
-      });
-
     navigate("/");
   };
   return (

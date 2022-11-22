@@ -41,6 +41,9 @@ exports.login = async (req, res) => {
       if (err) {
         res.send("something went wrong");
       }
+      // return res.status(201).json({
+      //   user,
+      //   auth: token,
       res.send({
         user,
         auth: token,

@@ -1,29 +1,16 @@
 import React, { useState, useEffect } from "react";
 import Post from "./Post";
-import Axios from "axios";
+import { useDispatch, useSelector } from "react-redux";
+import { getPosts } from "../actions/postActions";
 
 const Posts = () => {
-  const [posts, setPosts] = useState([]);
+  const dispatch = useDispatch();
+  const posts = useSelector((state) => state.posts);
+
   useEffect(() => {
-    getPosts();
-  }, []);
-  // const getPosts = async () => {
-  //   let result = await fetch("http://localhost:5000/posts");
-  //   result = await result.json();
-  //   setPosts(result);
-  // };
-  const getPosts = () => {
-    Axios.get("https://blog-api-krystian.herokuapp.com/posts")
-      .then((res) => {
-        // console.log(res.data);
-        setPosts(res.data);
-      })
-      .catch((err) => {
-        console.error(err.response);
-      });
-    // console.log(result);
-  };
-  console.log(posts);
+    dispatch(getPosts());
+  }, [dispatch]);
+
   return (
     <div className="post-list">
       <h1>Posts</h1>

@@ -1,15 +1,14 @@
 import React, { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { LogIn } from "../actions/authActions";
 import { useNavigate } from "react-router-dom";
-import Axios from "axios";
 
 const Login = () => {
+  const auth = useSelector((state) => state.auth);
+  const dispatch = useDispatch();
+  const state = useSelector((state) => state);
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  let headers = {
-    headers: {
-      "Content-Type": "application/json",
-    },
-  };
   const navigate = useNavigate();
   useEffect(() => {
     const auth = localStorage.getItem("user");
@@ -19,46 +18,15 @@ const Login = () => {
   }, []);
   const handleLogin = (e) => {
     e.preventDefault();
+
+    dispatch(LogIn(username, password));
     const payload = {
       username: username,
       password: password,
     };
-    Axios.post(
-      "https://blog-api-krystian.herokuapp.com/users/login",
-      payload,
-      headers
-    )
-      .then((res) => {
-        if (res.data.auth) {
-          localStorage.setItem("user", JSON.stringify(res.data.user));
-          console.log(JSON.stringify(res.data.user));
-          localStorage.setItem("token", res.data.auth);
-          navigate("/");
-        } else {
-          alert("Please enter correct details");
-        }
-      })
-      .catch((err) => {
-        console.error(err.response);
-      });
+    navigate("/");
   };
-  // const handleLogin = async (e) => {
-  //   e.preventDefault();
-  //   let result = await fetch("http://localhost:5000/users/login", {
-  //     method: "post",
-  //     body: JSON.stringify({ username, password }),
-  //     headers: { "Content-Type": "application/json" },
-  //   });
-  //   result = await result.json();
-  //   console.warn(result);
-  //   if (result.auth) {
-  //     localStorage.setItem("user", JSON.stringify(result.user));
-  //     localStorage.setItem("token", JSON.stringify(result.auth));
-  //     navigate("/");
-  //   } else {
-  //     alert("Please enter correct details");
-  //   }
-  // };
+
   return (
     <div className="login">
       <h1>Login</h1>
