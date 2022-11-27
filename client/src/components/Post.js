@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import moment from "moment";
 
 const Post = (props) => {
   return (
@@ -9,6 +10,7 @@ const Post = (props) => {
       </Link>
       <p>{props.content}</p>
       <p>{props.author}</p>
+      <p>{moment(props.date).fromNow()}</p>
     </div>
   );
 };

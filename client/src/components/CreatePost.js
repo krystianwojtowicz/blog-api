@@ -9,14 +9,16 @@ const CreatePost = (props) => {
   const author = JSON.parse(localStorage.getItem("user")).username;
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
+  const [date, setDate] = useState("");
   const navigate = useNavigate();
 
   const handleCreate = (e) => {
     e.preventDefault();
     const payload = {
-      title: title,
-      content: content,
-      author: author,
+      title,
+      content,
+      author,
+      date,
     };
 
     dispatch(createPost(payload));
@@ -36,7 +38,10 @@ const CreatePost = (props) => {
             type="text"
             placeholder="enter title"
             value={title}
-            onChange={(e) => setTitle(e.target.value)}
+            onChange={(e) => {
+              setTitle(e.target.value);
+              setDate(new Date());
+            }}
           />
           <textarea
             className="inputBox"

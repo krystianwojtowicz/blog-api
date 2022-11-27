@@ -22,6 +22,7 @@ const Posts = () => {
             title={item.title}
             content={item.content}
             author={item.author}
+            date={item.date}
           ></Post>
         ))}
       </div>
