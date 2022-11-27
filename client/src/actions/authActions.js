@@ -7,7 +7,7 @@ export const signUp = (username, password) => {
       password: password,
     };
     axios
-      .post("https://blog-api-krystian.herokuapp.com/users/signup", payload)
+      .post("https://blog-api-nwqo.onrender.com/users/signup", payload)
       .then((user) => {
         // dispatch({
         //   type: "SIGN_UP",
@@ -28,7 +28,7 @@ export const LogIn = (username, password) => {
       password: password,
     };
     axios
-      .post("https://blog-api-krystian.herokuapp.com/users/login", payload)
+      .post("https://blog-api-nwqo.onrender.com/users/login", payload)
       .then((user) => {
         localStorage.setItem("user", JSON.stringify(user.data.user));
         localStorage.setItem("token", user.data.auth);

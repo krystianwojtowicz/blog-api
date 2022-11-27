@@ -3,7 +3,7 @@ import axios from "axios";
 export const getPosts = () => {
   return (dispatch) => {
     axios
-      .get("https://blog-api-krystian.herokuapp.com/posts")
+      .get("https://blog-api-nwqo.onrender.com/posts")
       .then((posts) => {
         dispatch({
           type: "GET_POSTS",
@@ -26,7 +26,7 @@ export const createPost = (payload) => {
   return (dispatch) => {
     axios
       .post(
-        "https://blog-api-krystian.herokuapp.com/posts/create-post",
+        "https://blog-api-nwqo.onrender.com/posts/create-post",
         { ...payload },
         headers
       )
@@ -45,7 +45,7 @@ export const createPost = (payload) => {
 export const updatePost = (payload, _id) => {
   return (dispatch) => {
     axios
-      .put(`https://blog-api-krystian.herokuapp.com/posts/${_id}`, payload)
+      .put(`https://blog-api-nwqo.onrender.com/posts/${_id}`, payload)
       .then((payload) => {
         dispatch({
           type: "UPDATE_POST",
@@ -61,7 +61,7 @@ export const updatePost = (payload, _id) => {
 export const deletePost = (id) => {
   return (dispatch) => {
     axios
-      .delete(`https://blog-api-krystian.herokuapp.com/posts/${id}`)
+      .delete(`https://blog-api-nwqo.onrender.com/posts/${id}`)
       .then(() => {
         dispatch({
           type: "DELETE_POST",
