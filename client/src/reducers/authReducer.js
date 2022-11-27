@@ -1,5 +1,3 @@
-import jwtDecode from "jwt-decode";
-
 const initialState = {
   token: localStorage.getItem("token"),
   username: null,

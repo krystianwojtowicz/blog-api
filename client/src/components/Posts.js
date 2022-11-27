@@ -39,6 +39,7 @@ const Posts = () => {
             title={item.title}
             content={item.content}
             author={item.author}
+            date={item.date}
           >
             {/* <Link to={`/${item._id}`}>
               <h4>title={item.title}</h4>

@@ -44,8 +44,8 @@
 .wrapper-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, 20rem);
-  grid-template-rows: 200px;
-  grid-auto-rows: 200px;
+  grid-template-rows: 250px;
+  grid-auto-rows: 250px;
   grid-auto-columns: repeat(auto-fit, 20rem);
   justify-content: center;
 }
