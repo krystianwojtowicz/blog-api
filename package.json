@@ -9,7 +9,7 @@
     "start": "node ./bin/www",
     "devstart": "nodemon ./bin/www",
     "serverstart": "DEBUG=blog-api:* npm run devstart",
-    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build --prefix client"
+    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install && npm install --prefix client && npm run build --prefix client"
   },
   "dependencies": {
     "axios": "^1.1.3",
