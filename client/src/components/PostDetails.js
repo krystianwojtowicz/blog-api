@@ -4,6 +4,7 @@ import { useParams } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { updatePost, deletePost } from "../actions/postActions";
+import moment from "moment";
 
 const PostDetails = (props) => {
   const dispatch = useDispatch();
@@ -42,6 +43,7 @@ const PostDetails = (props) => {
       <h1>title: {props.title}</h1>
       <p>content: {props.content}</p>
       <p>author: {props.author}</p>
+      <p>date: {moment(props.date).fromNow()}</p>
       {user.username === props.author ? (
         <div className="update-post">
           <button className="appButton" onClick={handleDeletePost}>
