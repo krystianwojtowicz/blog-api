@@ -2,6 +2,8 @@ const initialState = {
   token: localStorage.getItem("token"),
   username: null,
   _id: null,
+  error: null,
+  message: null,
 };
 
 const authReducer = (state = initialState, action) => {
@@ -18,6 +20,12 @@ const authReducer = (state = initialState, action) => {
     //     ...initialState,
     //     username: action.user.data.user.username,
     //   };
+    case "SIGN_UP":
+      return {
+        ...initialState,
+        error: action.user.data.error ? action.user.data.error : null,
+        message: action.user.data.message ? action.user.data.message : null,
+      };
     case "SIGN_OUT":
       localStorage.removeItem("token");
       localStorage.removeItem("user");
