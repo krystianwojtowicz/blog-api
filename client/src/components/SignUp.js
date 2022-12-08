@@ -10,6 +10,7 @@ const SignUp = () => {
   console.log(state);
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [isSubmit, setIsSubmit] = useState(false);
   let headers = {
     headers: {
       "Content-Type": "application/json",
@@ -23,13 +24,18 @@ const SignUp = () => {
       navigate("/");
     }
   }, []);
+
+  useEffect(() => {
+    if (state.auth.message && isSubmit) navigate("/");
+  }, [state.auth.message]);
   const collectData = async (e) => {
     e.preventDefault();
 
     dispatch(signUp(username, password));
 
-    console.log(username, password);
-    console.log(state);
+    console.warn(username, password);
+    console.warn(state);
+    setIsSubmit(true);
     const payload = {
       username: username,
       password: password,
@@ -52,7 +58,8 @@ const SignUp = () => {
     // if (result.error) {
     //   alert(JSON.stringify(result.error));
     // }
-    navigate("/");
+    // if(!state.auth.error)
+    // navigate("/");
     // localStorage.setItem("user", JSON.stringify(result));
   };
   return (
@@ -69,13 +76,17 @@ const SignUp = () => {
           placeholder="enter username"
           value={username}
           onChange={(e) => setUsername(e.target.value)}
+          required
         />
+        <p>{state.auth.error}</p>
+        {/* <p>{state.auth.message}</p> */}
         <input
           className="inputBox"
           type="password"
           placeholder="enter password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
+          required
         />
         {/* <input
         className="inputBox"

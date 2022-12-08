@@ -14,15 +14,15 @@ export const signUp = (username, password) => {
     axios
       .post("http://localhost:5000/users/signup", payload)
       .then((user) => {
-        console.log(user);
+        console.warn(user);
         // localStorage.setItem("user", JSON.stringify(user.data));
         dispatch({
           type: "SIGN_UP",
           user,
         });
       })
-      .catch((error) => {
-        console.log(error.response);
+      .catch((err) => {
+        console.warn(err);
       });
   };
 };
@@ -47,7 +47,8 @@ export const LogIn = (username, password) => {
         });
       })
       .catch((error) => {
-        console.log(error);
+        console.log(error.response);
+        // console.log(error);
       });
   };
 };
