@@ -39,10 +39,7 @@ const { body, validationResult } = require("express-validator");
 // ];
 
 exports.signup = [
-  body(
-    "username"
-    // , "Username must be at least 3 characters long."
-  )
+  body("username")
     .trim()
     .isLength({ min: 3 })
     .escape()
@@ -55,12 +52,8 @@ exports.signup = [
 
   async (req, res, next) => {
     try {
-      // extract errors
       const errors = validationResult(req);
-      // if (!errors.isEmpty()) return res.json({ error: "7" });
-      // if (!errors.isEmpty()) return res.json({ errors: errors.array() });
       if (!errors.isEmpty()) {
-        console.log(errors);
         return res.json({
           error: errors.array().map((error) => error.msg),
         });
