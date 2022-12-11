@@ -15,7 +15,7 @@ export const signUp = (username, password) => {
         });
       })
       .catch((err) => {
-        console.warn(err);
+        console.warn(err.response.data);
       });
   };
 };
