@@ -52,6 +52,14 @@ exports.signup = [
     .isLength({ min: 6 })
     .escape()
     .withMessage("Password must be at least 6 characters long. "),
+  body("confirmPassword")
+    .trim()
+    .escape()
+    .custom(async (value, { req }) => {
+      if (value !== req.body.password) {
+        throw new Error("Confirmed password must be the same as password. ");
+      }
+    }),
 
   async (req, res, next) => {
     try {

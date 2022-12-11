@@ -7,9 +7,10 @@ import { signUp } from "../actions/authActions";
 const SignUp = () => {
   const dispatch = useDispatch();
   const state = useSelector((state) => state);
-  console.log(state);
+  // console.log(state);
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
   const [isSubmit, setIsSubmit] = useState(false);
   let headers = {
     headers: {
@@ -31,9 +32,9 @@ const SignUp = () => {
   const collectData = async (e) => {
     e.preventDefault();
 
-    dispatch(signUp(username, password));
+    dispatch(signUp(username, password, confirmPassword));
 
-    console.warn(username, password);
+    console.warn(username, password, confirmPassword);
     console.warn(state);
     setIsSubmit(true);
     const payload = {
@@ -86,6 +87,14 @@ const SignUp = () => {
           placeholder="enter password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
+          required
+        />
+        <input
+          className="inputBox"
+          type="password"
+          placeholder="confirm password"
+          value={confirmPassword}
+          onChange={(e) => setConfirmPassword(e.target.value)}
           required
         />
         {/* <input

@@ -5,11 +5,12 @@ let headers = {
     "Content-Type": "application/json",
   },
 };
-export const signUp = (username, password) => {
+export const signUp = (username, password, confirmPassword) => {
   return (dispatch) => {
     const payload = {
-      username: username,
-      password: password,
+      username,
+      password,
+      confirmPassword,
     };
     axios
       .post("http://localhost:5000/users/signup", payload)
