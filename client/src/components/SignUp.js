@@ -8,6 +8,7 @@ const SignUp = () => {
   const state = useSelector((state) => state);
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
   const [isSubmit, setIsSubmit] = useState(false);
   const navigate = useNavigate();
   useEffect(() => {
@@ -22,12 +23,8 @@ const SignUp = () => {
   }, [state.auth.message]);
   const collectData = async (e) => {
     e.preventDefault();
-    dispatch(signUp(username, password));
+    dispatch(signUp(username, password, confirmPassword));
     setIsSubmit(true);
-    const payload = {
-      username: username,
-      password: password,
-    };
   };
   return (
     <div className="register">
@@ -45,8 +42,6 @@ const SignUp = () => {
           onChange={(e) => setUsername(e.target.value)}
           required
         />
-        <p>{state.auth.error}</p>
-        {/* <p>{state.auth.message}</p> */}
         <input
           className="inputBox"
           type="password"
@@ -55,6 +50,15 @@ const SignUp = () => {
           onChange={(e) => setPassword(e.target.value)}
           required
         />
+        <input
+          className="inputBox"
+          type="password"
+          placeholder="confirm password"
+          value={confirmPassword}
+          onChange={(e) => setConfirmPassword(e.target.value)}
+          required
+        />
+        <p>{state.auth.error}</p>
         <button className="appButton" type="submit">
           Sign Up
         </button>

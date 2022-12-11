@@ -1,10 +1,11 @@
 import axios from "axios";
 
-export const signUp = (username, password) => {
+export const signUp = (username, password, confirmPassword) => {
   return (dispatch) => {
     const payload = {
-      username: username,
-      password: password,
+      username,
+      password,
+      confirmPassword,
     };
     axios
       .post("https://blog-api-nwqo.onrender.com/users/signup", payload)
