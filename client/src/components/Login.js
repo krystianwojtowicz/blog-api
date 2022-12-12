@@ -92,7 +92,7 @@ const Login = () => {
           onChange={(e) => setPassword(e.target.value)}
           required
         />
-        <p>{state.auth.error}</p>
+        <p>{state.auth.errorLogin}</p>
         <button className="appButton" type="submit">
           Login
         </button>

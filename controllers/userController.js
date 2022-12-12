@@ -68,7 +68,6 @@ exports.signup = [
       // if (!errors.isEmpty()) return res.json({ error: "7" });
       // if (!errors.isEmpty()) return res.json({ errors: errors.array() });
       if (!errors.isEmpty()) {
-        console.log(errors);
         return res.json({
           error: errors.array().map((error) => error.msg),
         });
