@@ -132,7 +132,8 @@ exports.signup = [
 
 exports.login = async (req, res) => {
   const user = await User.findOne({ username: req.body.username });
-  if (!user) return res.send({ message: "No user found" });
+  if (!user) return res.json({ error: "No user found" });
+  // if (!user) return res.send({ message: "No user found" });
   const validPassword = await bcrypt.compare(req.body.password, user.password);
   if (validPassword) {
     jwt.sign({ user }, "secretkey", { expiresIn: "2h" }, (err, token) => {

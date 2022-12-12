@@ -37,9 +37,11 @@ export const LogIn = (username, password) => {
     axios
       .post("http://localhost:5000/users/login", payload)
       .then((user) => {
-        localStorage.setItem("user", JSON.stringify(user.data.user));
-        localStorage.setItem("token", user.data.auth);
-        console.log(user);
+        if (user.data.user) {
+          localStorage.setItem("user", JSON.stringify(user.data.user));
+          localStorage.setItem("token", user.data.auth);
+        }
+        console.warn(user);
         // console.log(localStorage.getItem("token"));
         dispatch({
           type: "LOGIN",
@@ -48,7 +50,7 @@ export const LogIn = (username, password) => {
         });
       })
       .catch((error) => {
-        console.log(error.response);
+        console.warn(error);
         // console.log(error);
       });
   };

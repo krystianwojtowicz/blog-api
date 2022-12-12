@@ -22,7 +22,8 @@ const Login = () => {
     if (auth) {
       navigate("/");
     }
-  }, []);
+  }, [state]);
+
   const handleLogin = (e) => {
     e.preventDefault();
 
@@ -51,7 +52,7 @@ const Login = () => {
     //   .catch((err) => {
     //     console.error(err.response);
     //   });
-    navigate("/");
+    // navigate("/");
   };
 
   // const handleLogin = async (e) => {
@@ -81,6 +82,7 @@ const Login = () => {
           placeholder="enter username"
           value={username}
           onChange={(e) => setUsername(e.target.value)}
+          required
         />
         <input
           className="inputBox"
@@ -88,7 +90,9 @@ const Login = () => {
           placeholder="enter password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
+          required
         />
+        <p>{state.auth.error}</p>
         <button className="appButton" type="submit">
           Login
         </button>

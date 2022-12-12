@@ -79,7 +79,7 @@ const SignUp = () => {
           onChange={(e) => setUsername(e.target.value)}
           required
         />
-        <p>{state.auth.error}</p>
+
         {/* <p>{state.auth.message}</p> */}
         <input
           className="inputBox"
@@ -97,6 +97,7 @@ const SignUp = () => {
           onChange={(e) => setConfirmPassword(e.target.value)}
           required
         />
+        <p>{state.auth.error}</p>
         {/* <input
         className="inputBox"
         type="password"

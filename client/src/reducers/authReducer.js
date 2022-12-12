@@ -12,12 +12,17 @@ const authReducer = (state = initialState, action) => {
       // const user = action.user.user;
       // const auth = action.auth.data;
       // console.log(action.user.data.auth);
-      console.log(action.user.data.user);
+      console.warn(action.user.data);
       return {
         ...initialState,
         token: action.user.data.auth,
-        username: action.user.data.user.username,
-        _id: action.user.data.user._id,
+        // username: action.user.data.user.username
+        //   ? action.user.data.user.username
+        //   : null,
+        // _id: action.user.data.user._id ? action.user.data.user._id : null,
+        username: action.user.data.user?.username,
+        _id: action.user.data.user?._id,
+        error: action.user.data.error ? action.user.data.error : null,
       };
     case "SIGN_UP":
       console.warn(action.user.data);
