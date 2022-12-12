@@ -58,7 +58,7 @@ const SignUp = () => {
           onChange={(e) => setConfirmPassword(e.target.value)}
           required
         />
-        <p>{state.auth.error}</p>
+        <p>{state.auth.errorSignup}</p>
         <button className="appButton" type="submit">
           Sign Up
         </button>

@@ -2,7 +2,8 @@ const initialState = {
   token: localStorage.getItem("token"),
   username: null,
   _id: null,
-  error: null,
+  errorLogin: null,
+  errorSignup: null,
   message: null,
 };
 
@@ -14,7 +15,7 @@ const authReducer = (state = initialState, action) => {
         token: action.user.data.auth,
         username: action.user.data.user?.username,
         _id: action.user.data.user?._id,
-        error: action.user.data.error ? action.user.data.error : null,
+        errorLogin: action.user.data.error ? action.user.data.error : null,
       };
     // case "SIGN_UP":
     //   return {
@@ -24,7 +25,8 @@ const authReducer = (state = initialState, action) => {
     case "SIGN_UP":
       return {
         ...initialState,
-        error: action.user.data.error ? action.user.data.error : null,
+        username: action.user.data.user?.username,
+        errorSignup: action.user.data.error ? action.user.data.error : null,
         message: action.user.data.message ? action.user.data.message : null,
       };
     case "SIGN_OUT":
