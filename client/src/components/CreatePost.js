@@ -42,6 +42,7 @@ const CreatePost = (props) => {
               setTitle(e.target.value);
               setDate(new Date());
             }}
+            required
           />
           <textarea
             className="inputBox"
@@ -49,6 +50,7 @@ const CreatePost = (props) => {
             type="text"
             value={content}
             onChange={(e) => setContent(e.target.value)}
+            required
           />
           <button className="appButton" type="submit">
             Create Post

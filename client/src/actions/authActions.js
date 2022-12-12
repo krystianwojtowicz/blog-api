@@ -30,8 +30,10 @@ export const LogIn = (username, password) => {
     axios
       .post("https://blog-api-nwqo.onrender.com/users/login", payload)
       .then((user) => {
-        localStorage.setItem("user", JSON.stringify(user.data.user));
-        localStorage.setItem("token", user.data.auth);
+        if (user.data.user) {
+          localStorage.setItem("user", JSON.stringify(user.data.user));
+          localStorage.setItem("token", user.data.auth);
+        }
         dispatch({
           type: "LOGIN",
           auth: user,
@@ -39,7 +41,7 @@ export const LogIn = (username, password) => {
         });
       })
       .catch((error) => {
-        console.log(error.response);
+        console.warn(error);
         // console.log(error);
       });
   };

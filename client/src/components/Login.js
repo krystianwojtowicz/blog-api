@@ -15,7 +15,8 @@ const Login = () => {
     if (auth) {
       navigate("/");
     }
-  }, []);
+  }, [state]);
+
   const handleLogin = (e) => {
     e.preventDefault();
 
@@ -24,7 +25,6 @@ const Login = () => {
       username: username,
       password: password,
     };
-    navigate("/");
   };
 
   return (
@@ -37,6 +37,7 @@ const Login = () => {
           placeholder="enter username"
           value={username}
           onChange={(e) => setUsername(e.target.value)}
+          required
         />
         <input
           className="inputBox"
@@ -44,7 +45,9 @@ const Login = () => {
           placeholder="enter password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
+          required
         />
+        <p>{state.auth.error}</p>
         <button className="appButton" type="submit">
           Login
         </button>

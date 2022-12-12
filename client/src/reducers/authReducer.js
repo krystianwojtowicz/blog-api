@@ -12,8 +12,9 @@ const authReducer = (state = initialState, action) => {
       return {
         ...initialState,
         token: action.user.data.auth,
-        username: action.user.data.user.username,
-        _id: action.user.data.user._id,
+        username: action.user.data.user?.username,
+        _id: action.user.data.user?._id,
+        error: action.user.data.error ? action.user.data.error : null,
       };
     // case "SIGN_UP":
     //   return {
