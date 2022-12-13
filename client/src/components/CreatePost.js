@@ -1,7 +1,10 @@
-import React, { useState } from "react";
+import React, { useState, useRef, useEffect } from "react";
+import ReactQuill from "react-quill";
+import "react-quill/dist/quill.snow.css";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { createPost } from "../actions/postActions";
+// import { Editor } from "@tinymce/tinymce-react";
 
 const CreatePost = (props) => {
   const dispatch = useDispatch();
@@ -9,10 +12,12 @@ const CreatePost = (props) => {
   const author = JSON.parse(localStorage.getItem("user")).username;
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
+  console.warn(content);
   const [date, setDate] = useState("");
   const navigate = useNavigate();
 
   const handleCreate = (e) => {
+    console.log(content);
     e.preventDefault();
     const payload = {
       title,
@@ -44,12 +49,10 @@ const CreatePost = (props) => {
             }}
             required
           />
-          <textarea
-            className="inputBox"
-            maxLength="100"
-            type="text"
+          <ReactQuill
+            theme="snow"
             value={content}
-            onChange={(e) => setContent(e.target.value)}
+            onChange={setContent}
             required
           />
           <button className="appButton" type="submit">
