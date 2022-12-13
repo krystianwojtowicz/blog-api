@@ -1,8 +1,11 @@
-import React, { useState } from "react";
+import React, { useState, useRef, useEffect } from "react";
+import ReactQuill from "react-quill";
+import "react-quill/dist/quill.snow.css";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import Axios from "axios";
 import { createPost } from "../actions/postActions";
+// import { Editor } from "@tinymce/tinymce-react";
 
 const CreatePost = (props) => {
   const dispatch = useDispatch();
@@ -11,15 +14,23 @@ const CreatePost = (props) => {
   // console.log(localStorage.getItem("token"));
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
+  console.warn(content);
   const [date, setDate] = useState("");
   const navigate = useNavigate();
+  // const editor = useRef();
   let headers = {
     headers: {
       "Content-Type": "application/json",
       authorization: localStorage.getItem("token"),
     },
   };
+
+  useEffect(() => {
+    console.warn(content);
+  }, [content]);
+
   const handleCreate = (e) => {
+    console.log(content);
     e.preventDefault();
     const payload = {
       title,
@@ -57,6 +68,16 @@ const CreatePost = (props) => {
             // props.handleGetPosts();
           }}
         >
+          {/* <Editor
+            // ref={editor}
+            apiKey="8uglg0y5jfna6nbn7oxzydohttmjwf977sbmyulmgt4od4j8"
+            //  apiKey={process.env.REACT_APP_API_KEY}
+            // value={content}
+            // onChange={(e) => setContent(e.target.value)}
+            // onChange={(e) => setContent(e.target.value)}
+            // onInit={(e,editor) => editorRef.current = editor}
+          /> */}
+          <ReactQuill theme="snow" value={content} onChange={setContent} />
           <input
             className="inputBox"
             type="text"
@@ -72,8 +93,8 @@ const CreatePost = (props) => {
             className="inputBox"
             maxLength="100"
             type="text"
-            value={content}
-            onChange={(e) => setContent(e.target.value)}
+            // value={content}
+            // onChange={(e) => setContent(e.target.value)}
             required
           />
           <button className="appButton" type="submit">

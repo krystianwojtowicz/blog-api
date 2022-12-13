@@ -1,5 +1,6 @@
 import React from "react";
 import { useEffect, useState } from "react";
+import ReactQuill from "react-quill";
 import { useParams } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
@@ -122,7 +123,10 @@ const PostDetails = (props) => {
     <div className="post-details">
       {/* <h1>{JSON.stringify(params.id)}</h1> */}
       <h1>title: {props.title}</h1>
-      <p>content: {props.content}</p>
+      {/* <p>content: {props.content}</p> */}
+      <p>
+        content: <p dangerouslySetInnerHTML={{ __html: props.content }}></p>
+      </p>
       <p>author: {props.author}</p>
       <p>date: {moment(props.date).fromNow()}</p>
       {user.username === props.author ? (
@@ -138,13 +142,14 @@ const PostDetails = (props) => {
               value={title}
               onChange={(e) => setTitle(e.target.value)}
             />
-            <textarea
+            <ReactQuill theme="snow" value={content} onChange={setContent} />
+            {/* <textarea
               className="inputBox"
               maxLength="100"
               type="text"
               value={content}
               onChange={(e) => setContent(e.target.value)}
-            />
+            /> */}
             <button className="appButton" type="submit">
               Update Post
             </button>

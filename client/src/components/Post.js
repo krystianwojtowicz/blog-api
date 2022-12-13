@@ -11,7 +11,8 @@ const Post = (props) => {
       <Link to={`/${props.id}`}>
         <h4>{props.title}</h4>
       </Link>
-      <p>{props.content}</p>
+      {/* <p>{props.content}</p> */}
+      <p dangerouslySetInnerHTML={{ __html: props.content }}></p>
       <p>{props.author}</p>
       <p>{moment(props.date).fromNow()}</p>
     </div>

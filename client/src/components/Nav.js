@@ -39,7 +39,8 @@ const Nav = () => {
               <Link onClick={logout} to="/signup">
                 {/* state */}
                 Logout (
-                {typeof auth !== "object" ? JSON.parse(auth).username : null})
+                {/* {typeof auth !== "object" ? JSON.parse(auth).username : null}) */}
+                {JSON.parse(auth).username})
               </Link>
             </li>
           </>
