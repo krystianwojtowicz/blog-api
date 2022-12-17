@@ -1,7 +1,7 @@
 const initialState = {
   token: localStorage.getItem("token"),
-  username: null,
-  _id: null,
+  username: JSON.parse(localStorage.getItem("user"))?.username || null,
+  _id: JSON.parse(localStorage.getItem("user"))?._id || null,
   errorLogin: null,
   errorSignup: null,
   message: null,
