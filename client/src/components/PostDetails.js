@@ -4,6 +4,7 @@ import ReactQuill from "react-quill";
 import { useParams } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
+// import { updatePost, deletePost, createComment } from "../actions/postActions";
 import { updatePost, deletePost } from "../actions/postActions";
 import moment from "moment";
 
@@ -17,7 +18,6 @@ const PostDetails = (props) => {
   const post = posts[0];
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
-
   useEffect(() => {
     setTitle(post.title);
     setContent(post.content);
@@ -42,11 +42,12 @@ const PostDetails = (props) => {
   return (
     <div className="post-details">
       <h1>title: {props.title}</h1>
-      <p>
+      <div>
         content: <p dangerouslySetInnerHTML={{ __html: props.content }}></p>
-      </p>
+      </div>
       <p>author: {props.author}</p>
       <p>date: {moment(props.date).fromNow()}</p>
+      <hr />
       {user.username === props.author ? (
         <div className="update-post">
           <button className="appButton" onClick={handleDeletePost}>
