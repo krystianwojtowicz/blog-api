@@ -29,7 +29,6 @@ const Nav = () => {
           {/* <Link to="/posts">Posts</Link> */}
           <Link to="/">Posts</Link>
         </li>
-
         {auth ? (
           <>
             <li>

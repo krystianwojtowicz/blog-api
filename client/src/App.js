@@ -9,6 +9,7 @@ import PostDetails from "./components/PostDetails";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getPosts } from "./actions/postActions";
+// import { loadUser } from "./actions/authActions";
 
 function App() {
   const dispatch = useDispatch();
@@ -19,6 +20,7 @@ function App() {
   useEffect(() => {
     // getPosts();
     dispatch(getPosts());
+    // dispatch(loadUser());
   }, [dispatch]);
 
   // const getPosts = async () => {

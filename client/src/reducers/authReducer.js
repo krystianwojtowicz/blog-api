@@ -1,7 +1,7 @@
 const initialState = {
   token: localStorage.getItem("token"),
-  username: null,
-  _id: null,
+  username: JSON.parse(localStorage.getItem("user"))?.username || null,
+  _id: JSON.parse(localStorage.getItem("user"))?._id || null,
   errorLogin: null,
   errorSignup: null,
   message: null,
@@ -10,6 +10,7 @@ const initialState = {
 const authReducer = (state = initialState, action) => {
   switch (action.type) {
     case "LOGIN":
+      // case "USER-LOADED":
       // const user = action.user.user;
       // const auth = action.auth.data;
       // console.log(action.user.data.auth);
