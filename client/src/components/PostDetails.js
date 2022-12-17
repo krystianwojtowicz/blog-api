@@ -4,6 +4,7 @@ import ReactQuill from "react-quill";
 import { useParams } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
+// import { updatePost, deletePost, createComment } from "../actions/postActions";
 import { updatePost, deletePost } from "../actions/postActions";
 import moment from "moment";
 
@@ -20,6 +21,9 @@ const PostDetails = (props) => {
   const post = posts[0];
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
+  // const [name, setName] = useState("");
+  // const [commentContent, setCommentContent] = useState("");
+  // const [date, setDate] = useState("");
   let headers = {
     headers: {
       "Content-Type": "application/json",
@@ -55,6 +59,15 @@ const PostDetails = (props) => {
   //   result = await result.json();
   //   setTitle(result.title);
   //   setContent(result.content);
+  // };
+  // const handleComment = (e) => {
+  //   e.preventDefault();
+  //   const payload = {
+  //     name,
+  //     commentContent,
+  //     date,
+  //   };
+  //   dispatch(createComment(payload, props._id));
   // };
   const handleUpdate = (e) => {
     e.preventDefault();
@@ -124,11 +137,44 @@ const PostDetails = (props) => {
       {/* <h1>{JSON.stringify(params.id)}</h1> */}
       <h1>title: {props.title}</h1>
       {/* <p>content: {props.content}</p> */}
-      <p>
+      <div>
         content: <p dangerouslySetInnerHTML={{ __html: props.content }}></p>
-      </p>
+      </div>
       <p>author: {props.author}</p>
       <p>date: {moment(props.date).fromNow()}</p>
+      {/* <p>comments: {props.comments}</p> */}
+      {/* <hr /> */}
+      {/* <h4>Comments:</h4>
+      {props.comments.map((item, index) => (
+        <div className="comment" key={index}>
+          <strong>{item.name}</strong>
+          <p>{item.content}</p>
+          <p>{item.date}</p>
+        </div>
+      ))} */}
+      {/* <form className="add-comment" onSubmit={(e) => handleComment}>
+        <input
+          className="inputBox inputComment"
+          type="text"
+          placeholder="name"
+          value={name}
+          onChange={(e) => {
+            setName(e.target.value);
+            setDate(new Date());
+          }}
+        />
+        <input
+          className="inputBox inputComment"
+          type="text"
+          placeholder="comment"
+          value={commentContent}
+          onChange={(e) => setCommentContent(e.target.value)}
+        />
+        <button className="appButton" type="submit">
+          Send
+        </button>
+      </form> */}
+      <hr />
       {user.username === props.author ? (
         <div className="update-post">
           <button className="appButton" onClick={handleDeletePost}>

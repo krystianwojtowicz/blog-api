@@ -36,6 +36,16 @@ export const getPosts = () => {
 //       });
 //   };
 // };
+// export const createComment = (payload, _id) => {
+//   return (dispatch) => {
+//     axios.put(`http://localhost:5000/posts/${_id}`, payload).then((payload) => {
+//       dispatch({
+//         type: "ADD_COMMENT",
+//         payload,
+//       });
+//     });
+//   };
+// };
 
 export const createPost = (payload) => {
   let headers = {

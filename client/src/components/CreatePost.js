@@ -77,7 +77,7 @@ const CreatePost = (props) => {
             // onChange={(e) => setContent(e.target.value)}
             // onInit={(e,editor) => editorRef.current = editor}
           /> */}
-          <ReactQuill theme="snow" value={content} onChange={setContent} />
+
           <input
             className="inputBox"
             type="text"
@@ -89,12 +89,18 @@ const CreatePost = (props) => {
             }}
             required
           />
-          <textarea
+          {/* <textarea
             className="inputBox"
             maxLength="100"
             type="text"
             // value={content}
             // onChange={(e) => setContent(e.target.value)}
+            required
+          /> */}
+          <ReactQuill
+            theme="snow"
+            value={content}
+            onChange={setContent}
             required
           />
           <button className="appButton" type="submit">

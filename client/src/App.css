@@ -83,3 +83,24 @@ textarea {
   display: flex;
   justify-content: center;
 }
+
+/* .comment {
+  margin-bottom: 20px;
+  padding: 30px;
+  box-shadow: 0 0 13px 0 rgb(39 37 37 / 13%);
+  border-radius: 20px;
+  width: 90%;
+  word-wrap: break-word;
+  margin: auto;
+  margin-top: 20px;
+  margin-bottom: 10px;
+}
+
+.add-comment {
+  max-width: 400px;
+  margin: auto;
+}
+
+.inputComment {
+  margin: 20px auto;
+} */

@@ -9,6 +9,7 @@ const postReducer = (state = [], action) => {
       console.log(action);
       return [action.post.post.data, ...state];
     case "UPDATE_POST":
+      // case "ADD_COMMENT":
       return state.map((post) =>
         post._id === action.post.data._id ? action.post.data : post
       );
