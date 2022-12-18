@@ -4,7 +4,6 @@ import ReactQuill from "react-quill";
 import { useParams } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-// import { updatePost, deletePost, createComment } from "../actions/postActions";
 import { updatePost, deletePost } from "../actions/postActions";
 import moment from "moment";
 
@@ -53,19 +52,21 @@ const PostDetails = (props) => {
           <button className="appButton" onClick={handleDeletePost}>
             Delete Post
           </button>
-          <form onSubmit={(e) => handleUpdate(e)}>
-            <input
-              className="inputBox"
-              type="text"
-              placeholder="enter title"
-              value={title}
-              onChange={(e) => setTitle(e.target.value)}
-            />
-            <ReactQuill theme="snow" value={content} onChange={setContent} />
-            <button className="appButton" type="submit">
-              Update Post
-            </button>
-          </form>
+          <div className="create-post">
+            <form onSubmit={(e) => handleUpdate(e)}>
+              <input
+                className="inputBox"
+                type="text"
+                placeholder="enter title"
+                value={title}
+                onChange={(e) => setTitle(e.target.value)}
+              />
+              <ReactQuill theme="snow" value={content} onChange={setContent} />
+              <button className="appButton" type="submit">
+                Update Post
+              </button>
+            </form>
+          </div>
         </div>
       ) : null}
     </div>

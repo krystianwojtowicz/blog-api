@@ -4,7 +4,6 @@ import "react-quill/dist/quill.snow.css";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { createPost } from "../actions/postActions";
-// import { Editor } from "@tinymce/tinymce-react";
 
 const CreatePost = (props) => {
   const dispatch = useDispatch();
@@ -50,6 +49,7 @@ const CreatePost = (props) => {
             required
           />
           <ReactQuill
+            className="quill"
             theme="snow"
             value={content}
             onChange={setContent}
