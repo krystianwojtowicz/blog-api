@@ -1,9 +1,16 @@
+.nav {
+  min-height: 41px;
+  background-color: skyblue;
+  width: 100%;
+}
 .nav-ul {
   background-color: skyblue;
   margin: 0;
 }
 .nav-ul li {
   display: inline-block;
+  /* list-style-type: none; */
+  text-align: center;
   padding: 10px;
 }
 
@@ -13,28 +20,63 @@
   padding: 5px;
 }
 
+.toggle-button {
+  position: absolute;
+  top: 0.75rem;
+  right: 1rem;
+  display: none;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 30px;
+  height: 21px;
+}
+
+.toggle-button .bar {
+  height: 3px;
+  width: 100%;
+  background-color: white;
+  border-radius: 10px;
+}
+
 /* signup */
 .appButton {
-  margin: 20px;
+  margin: 20px auto;
   width: 150px;
   padding: 10px;
   background-color: skyblue;
   border: solid 1px;
   cursor: pointer;
+  display: block;
 }
 /* signup */
 
 .register,
 .login {
-  margin-left: 30%;
+  margin: 0px auto;
+  max-width: 350px;
+  /* margin-left: 30%; */
+}
+
+h1 {
+  text-align: center;
+}
+
+.register form,
+.login form {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
 }
 
 .inputBox {
   padding: 7px;
   display: block;
   border: 1px solid skyblue;
-  width: 300px;
-  margin: 20px;
+  /* width: 300px; */
+  width: 90%;
+  /* max-width: 300px; */
+  margin: 10px auto;
+  /* margin: min(10px, 3%); */
 }
 
 .post-list {
@@ -43,10 +85,10 @@
 }
 .wrapper-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, 20rem);
+  grid-template-columns: repeat(auto-fit, minmax(250px, 20rem));
   grid-template-rows: 250px;
   grid-auto-rows: 250px;
-  grid-auto-columns: repeat(auto-fit, 20rem);
+  grid-auto-columns: repeat(auto-fit, minmax(250px, 20rem));
   justify-content: center;
 }
 .wrapper-grid div {
@@ -82,6 +124,42 @@ textarea {
 .create-post {
   display: flex;
   justify-content: center;
+  max-width: 400px;
+  margin: 0 auto;
+  /* flex-wrap: wrap; */
+  /* max-width: 400px; */
+}
+
+.quill {
+  width: 390px;
+  margin: auto;
+}
+
+@media all and (max-width: 410px) {
+  .quill {
+    margin: 10px;
+    width: 260px;
+  }
+}
+
+@media all and (max-width: 345px) {
+  .toggle-button {
+    display: flex;
+  }
+  .nav-ul:not(.mobile) li {
+    display: none;
+  }
+  .nav-ul.mobile li {
+    display: block;
+    /* list-style-type: none; */
+    /* padding: 10px; */
+  }
+  ul {
+    padding: 0;
+  }
+  .inputBox {
+    margin: 10px;
+  }
 }
 
 /* .comment {

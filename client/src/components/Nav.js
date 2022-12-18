@@ -1,10 +1,11 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { signOut } from "../actions/authActions";
 
 const Nav = () => {
+  const [mobile, setMobile] = useState(true);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const state = useSelector((state) => state);
@@ -23,8 +24,13 @@ const Nav = () => {
     navigate("/signup");
   };
   return (
-    <div>
-      <ul className="nav-ul">
+    <div className="nav">
+      <a href="#" class="toggle-button" onClick={() => setMobile(!mobile)}>
+        <span class="bar"></span>
+        <span class="bar"></span>
+        <span class="bar"></span>
+      </a>
+      <ul className={mobile ? "nav-ul mobile" : "nav-ul"}>
         <li>
           {/* <Link to="/posts">Posts</Link> */}
           <Link to="/">Posts</Link>

@@ -180,26 +180,28 @@ const PostDetails = (props) => {
           <button className="appButton" onClick={handleDeletePost}>
             Delete Post
           </button>
-          <form onSubmit={(e) => handleUpdate(e)}>
-            <input
-              className="inputBox"
-              type="text"
-              placeholder="enter title"
-              value={title}
-              onChange={(e) => setTitle(e.target.value)}
-            />
-            <ReactQuill theme="snow" value={content} onChange={setContent} />
-            {/* <textarea
+          <div className="create-post">
+            <form onSubmit={(e) => handleUpdate(e)}>
+              <input
+                className="inputBox"
+                type="text"
+                placeholder="enter title"
+                value={title}
+                onChange={(e) => setTitle(e.target.value)}
+              />
+              <ReactQuill theme="snow" value={content} onChange={setContent} />
+              {/* <textarea
               className="inputBox"
               maxLength="100"
               type="text"
               value={content}
               onChange={(e) => setContent(e.target.value)}
             /> */}
-            <button className="appButton" type="submit">
-              Update Post
-            </button>
-          </form>
+              <button className="appButton" type="submit">
+                Update Post
+              </button>
+            </form>
+          </div>
         </div>
       ) : null}
     </div>

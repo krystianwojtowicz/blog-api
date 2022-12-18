@@ -9,6 +9,11 @@ import { createPost } from "../actions/postActions";
 
 const CreatePost = (props) => {
   const dispatch = useDispatch();
+  // const style = {
+  //   minWidth: "260px",
+  //   maxWidth: "90%",
+  //   margin: "auto",
+  // };
 
   const author = JSON.parse(localStorage.getItem("user")).username;
   // console.log(localStorage.getItem("token"));
@@ -98,10 +103,12 @@ const CreatePost = (props) => {
             required
           /> */}
           <ReactQuill
+            className="quill"
             theme="snow"
             value={content}
             onChange={setContent}
             required
+            // style={style}
           />
           <button className="appButton" type="submit">
             Create Post
