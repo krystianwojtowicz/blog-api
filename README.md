@@ -8,7 +8,7 @@ A Blogging website created using a React.js front-end & Express backend.
 - [Status](#Status)
 
 # <a herf="live-demo"></a>Live Demo
-[Demo](https://blog-api-krystian.herokuapp.com/)
+[Demo](https://blog-api-nwqo.onrender.com/)
 
 # Technologies
 - CSS3
