@@ -29,4 +29,4 @@ A Blogging website created using a React.js front-end & Express backend.
 - Create, edit and delete blog posts
 
 # Status
-Project is: unfinished
+Project is: finished
